@@ -1,0 +1,7 @@
+.idea
+.idea_modules
+lib/
+project/target/
+target/
+
+*.swp
