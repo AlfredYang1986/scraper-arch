@@ -28,7 +28,7 @@ case class scraper_node(val s : sketch,
 				val lst = s.lst_attrs.map (l => dobumentParseLstElem(l._1, d))
 							.filterNot(_ == None).map (x => x.get._1 -> x.get._2).toMap
 
-				println("scraper doing ...")
+				println(s"scraper doing with url $x ...")
 				Some(toJson(tmp ++: sbs ++: lst))
 
 			}.getOrElse(None)

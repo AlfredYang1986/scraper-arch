@@ -4,8 +4,220 @@
         "platform": "大众点评",
         "category": "幼儿教育",
         "url": "http://www.dianping.com/search/category/2/70/g188",
-        "page": "p{0}",
+        "page": "p",
         "upper": "50",
+        "container": {
+            "entrance": {},
+            "url": "",
+            "defines": [],
+            "sub_entrance": ["shop"],
+            "shop": {
+                "entrance": {
+                    "elem": "ul.shop-list > li > div > p > a",
+                    "attr": "href"
+                },
+                "url": "",
+                "container": {
+                    "defines": ["name", "address", "introduction", "phone", "schedule"],
+                    "lst_entrance": ["comments", "images"],
+                    "sub_entrance": ["sales", "class"],
+                    "name": "h1.shop-title",
+                    "address": "div.shop-addr > span",
+                    "introduction": "div.block_right  > span",
+                    "phone": "div.shopinfor > p > span",
+                    "schedule": "div.more-class > p:nth-child(2) > span",
+                    "sales": {
+                        "entrance": {
+                            "elem": "div.promo-list > ul > li > a",
+                            "attr": "href"
+                        },
+                        "url": "",
+                        "parent": "name",
+                        "container": {
+                            "defines": ["name", "description", "price", "ori_price", "sold", "validate_data", "shop_name", "age_boundary", "detail"],
+                            "lst_entrance": ["images"],
+                            "url": "",
+                            "name": "div.bd > h1.title",
+                            "description": "div.bd > h2.sub-title",
+                            "price": "div.bd > div.price-wrap > h3:nth-child(1)",
+                            "ori_price": "div.bd > div.price-wrap > h3:nth-child(2)",
+                            "sold": "div.action-info > span > em",
+                            "validate_date": "div.validate-date > span",
+                            "shop_name": "div.shoptitle > a",
+                            "age_boundary": "div#tab_show_1 > div > div > span:nth-child(1)",
+                            "images": {
+                                "entrance": "div.detail > ul",
+                                "defines": ["image"],
+                                "image": {
+                                    "elem": "div.img > img",
+                                    "attr": "data-lazyload "
+                                }
+                            }
+                        }
+                    },
+                    "class": {
+                        "entrance": {
+                            "elem": "div.pic-name > h3 > a",
+                            "attr": "href"
+                        },
+                        "url": "",
+                        "parent": "name",
+                        "container": {
+                            "defines": ["name", "phone", "address", "shop_name", "course_type", "age_boundary", "course_schedule", "trial", "course_times", "course_length", "area"],
+                            "lst_entrance": ["images"],
+                            "url": "",
+                            "name": "div.type-box:nth-child(1) > h3 > a",
+                            "phone": "div.hotline",
+                            "address": "div.rst > span.address",
+                            "shop_name": "div.textshow > h3:nth-child(1)",
+                            "course_type": "div.parameter > table > tbody > tr:nth-child(1) > td:nth-child(1) > div.cont",
+                            "age_boundary": "div.parameter > table > tbody > tr:nth-child(1) > td:nth-child(2) > div.cont",
+                            "course_schedule": "div.parameter > table > tbody > tr:nth-child(2) > td:nth-child(1) > div.cont",
+                            "trial": "div.parameter > table > tbody > tr:nth-child(2) > td:nth-child(2) > div.cont",
+                            "course_times": "div.parameter > table > tbody > tr:nth-child(3) > td:nth-child(1) > div.cont",
+                            "course_length": "div.parameter > table > tbody > tr:nth-child(3) > td:nth-child(2) > div.cont",
+                            "area": "div.parameter > table > tbody > tr:nth-child(4) > td:nth-child(1) > div.cont",
+                            "images": {
+                                "entrance": "div.graph-box > ul",
+                                "defines": ["image"],
+                                "image": {
+                                    "elem": "li > img",
+                                    "attr": "data-lazyload"
+                                }
+                            }
+                        }
+                    },
+                    "comments": {
+                        "entrance": "div.comment-list > ul > li",
+                        "defines": ["name", "content"],
+                        "name": "div.content > p.name",
+                        "content": "div.content > div.comment-txt > div"
+                    },
+                    "images": {
+                        "entrance": "div.mainpic > a",
+                        "defines": ["image"],
+                        "image": {
+                            "elem": "img",
+                            "attr": "src"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    {
+        "host": "http://www.dianping.com",
+        "platform": "大众点评",
+        "category": "幼儿才艺",
+        "url": "http://www.dianping.com/search/category/2/70/g27763",
+        "page": "p",
+        "upper": "50",
+        "container": {
+            "entrance": {},
+            "url": "",
+            "defines": [],
+            "sub_entrance": ["shop"],
+            "shop": {
+                "entrance": {
+                    "elem": "ul.shop-list > li > div > p > a",
+                    "attr": "href"
+                },
+                "url": "",
+                "container": {
+                    "defines": ["name", "address", "introduction", "phone", "schedule"],
+                    "lst_entrance": ["comments", "images"],
+                    "sub_entrance": ["sales", "class"],
+                    "name": "h1.shop-title",
+                    "address": "div.shop-addr > span",
+                    "introduction": "div.block_right  > span",
+                    "phone": "div.shopinfor > p > span",
+                    "schedule": "div.more-class > p:nth-child(2) > span",
+                    "sales": {
+                        "entrance": {
+                            "elem": "div.promo-list > ul > li > a",
+                            "attr": "href"
+                        },
+                        "url": "",
+                        "parent": "name",
+                        "container": {
+                            "defines": ["name", "description", "price", "ori_price", "sold", "validate_data", "shop_name", "age_boundary", "detail"],
+                            "lst_entrance": ["images"],
+                            "url": "",
+                            "name": "div.bd > h1.title",
+                            "description": "div.bd > h2.sub-title",
+                            "price": "div.bd > div.price-wrap > h3:nth-child(1)",
+                            "ori_price": "div.bd > div.price-wrap > h3:nth-child(2)",
+                            "sold": "div.action-info > span > em",
+                            "validate_date": "div.validate-date > span",
+                            "shop_name": "div.shoptitle > a",
+                            "age_boundary": "div#tab_show_1 > div > div > span:nth-child(1)",
+                            "images": {
+                                "entrance": "div.detail > ul",
+                                "defines": ["image"],
+                                "image": {
+                                    "elem": "div.img > img",
+                                    "attr": "data-lazyload "
+                                }
+                            }
+                        }
+                    },
+                    "class": {
+                        "entrance": {
+                            "elem": "div.pic-name > h3 > a",
+                            "attr": "href"
+                        },
+                        "url": "",
+                        "parent": "name",
+                        "container": {
+                            "defines": ["name", "phone", "address", "shop_name", "course_type", "age_boundary", "course_schedule", "trial", "course_times", "course_length", "area"],
+                            "lst_entrance": ["images"],
+                            "url": "",
+                            "name": "div.type-box:nth-child(1) > h3 > a",
+                            "phone": "div.hotline",
+                            "address": "div.rst > span.address",
+                            "shop_name": "div.textshow > h3:nth-child(1)",
+                            "course_type": "div.parameter > table > tbody > tr:nth-child(1) > td:nth-child(1) > div.cont",
+                            "age_boundary": "div.parameter > table > tbody > tr:nth-child(1) > td:nth-child(2) > div.cont",
+                            "course_schedule": "div.parameter > table > tbody > tr:nth-child(2) > td:nth-child(1) > div.cont",
+                            "trial": "div.parameter > table > tbody > tr:nth-child(2) > td:nth-child(2) > div.cont",
+                            "course_times": "div.parameter > table > tbody > tr:nth-child(3) > td:nth-child(1) > div.cont",
+                            "course_length": "div.parameter > table > tbody > tr:nth-child(3) > td:nth-child(2) > div.cont",
+                            "area": "div.parameter > table > tbody > tr:nth-child(4) > td:nth-child(1) > div.cont",
+                            "images": {
+                                "entrance": "div.graph-box > ul",
+                                "defines": ["image"],
+                                "image": {
+                                    "elem": "li > img",
+                                    "attr": "data-lazyload"
+                                }
+                            }
+                        }
+                    },
+                    "comments": {
+                        "entrance": "div.comment-list > ul > li",
+                        "defines": ["name", "content"],
+                        "name": "div.content > p.name",
+                        "content": "div.content > div.comment-txt > div"
+                    },
+                    "images": {
+                        "entrance": "div.mainpic > a",
+                        "defines": ["image"],
+                        "image": {
+                            "elem": "img",
+                            "attr": "src"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    {
+        "host": "http://www.dianping.com",
+        "platform": "大众点评",
+        "category": "托班/托儿所",
+        "url": "http://www.dianping.com/search/category/2/70/g20009",
+        "page": "p",
+        "upper": "10",
         "container": {
             "entrance": {},
             "url": "",

@@ -7,7 +7,7 @@ import play.api.libs.json.JsValue
 import play.api.libs.json.Json.toJson
 
 object sketch {
-	def apply(node : JsValue) : List[sketch] = (new entrance_sketch).dataFromNode(node) :: Nil
+	def apply(node : JsValue) : sketch = (new entrance_sketch).dataFromNode(node)
 	def apply(node : JsValue, parent : sketch) : sketch = {
 		val t =	(new sub_sketch).dataFromNode(node)
 		t.parent = Some(parent)
