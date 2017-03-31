@@ -1,17 +1,19 @@
 [
     {
-        "host": "https://www.wegenart.com",
-        "platform": "为艺",
-        "category": "老师",
-        "url": "https://www.wegenart.com/teacher/575420496af1bc54ce000065",
+        "host": "http://bj.juesheng.com",
+        "platform": "决胜网",
+        "category": "测试",
+        "protocol": "html",
+        "url": "http://bj.juesheng.com/shop/586840.html",
         "page": "",
         "upper": "0",
         "container": {
-            "defines": ["bio", "work", "awards", "description"],
-            "bio": "div.bio-section:nth-child(1) > div.bio-section-content > span.info-item > span.info-piece",
-            "word": "div.bio-section:nth-child(2) > div.bio-section-content > p > span.info-item > span.info-piece",
-            "awards": "div.bio-section:nth-child(4) > div.bio-section-content > p > span.info-item > span.info-piece",
-            "description": "div.bio-section:nth-child(5) > div.bio-section-content > pre"
+            "defines": ["name", "address", "comment_numb", "phone", "schedule"],
+            "name": "div.intr-l > div.head-line > h1",
+            "address": "div.intr-l > div.business-infor > p:nth-child(1) > span",
+            "comment_numb": "div.intr-l > div.score-count > span > a",
+            "phone": "div.intr-l > div.business-infor > p:nth-child(2) > span",
+            "schedule": "div.intr-l > div.business-infor > p:nth-child(4) > span"
         }
     }
 ]
