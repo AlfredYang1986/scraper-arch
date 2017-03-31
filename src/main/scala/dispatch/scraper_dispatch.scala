@@ -38,9 +38,13 @@ class scraper_dispatch extends Actor
 			r map { x =>
 				val url = (x._2 \ "url").asOpt[String].map (x => x).getOrElse(throw new Exception("must have url"))
 				val page = (x._2 \ "page").asOpt[String].map (x => x).getOrElse(throw new Exception("must have page"))
-				val upper = (x._2 \ "upper").asOpt[String].map (x => x.toInt).getOrElse(throw new Exception("must have upper"))
+				val upper = (x._2 \ "upper").asOpt[String].map (x => x.toInt).getOrElse(0)
 
-				scraper_job((1 to upper).map (y => scraper_node(x._1, Some(url + page + y))).toList)
+				if (page.isEmpty)
+					scraper_job(scraper_node(x._1, Some(url)) :: Nil)
+				else
+					scraper_job((1 to upper).map (y => scraper_node(x._1, Some(url + page + y))).toList)
+
 			} match {
 				case head :: tail => {
 					atomic { implicit tnx =>
@@ -49,6 +53,9 @@ class scraper_dispatch extends Actor
 					}
 				}
 			}
+			println(r)
+			println(current.single.get)
+			println(waiting_lst.single.get)
 
 			(1 to core_number) foreach { _ =>
 				signStep(router)
@@ -74,7 +81,7 @@ class scraper_dispatch extends Actor
 
 			{
 				val writer = new FileWriter(new File("output/origin.json"))
-				writer.write(toJson(result).toString)
+				writer.write(toJson(result.sortBy(x => (x \ "name").asOpt[String].map (y => y).getOrElse(""))).toString)
 				writer.flush
 				writer.close
 			}
@@ -82,7 +89,7 @@ class scraper_dispatch extends Actor
 			{
 				val writer = new FileWriter(new File("output/sales.json"))
 				val sales = result.map (x => (x \ "sales").asOpt[List[JsValue]].map (x => x).getOrElse(Nil)).flatten
-				writer.write(toJson(sales).toString)
+				writer.write(toJson(sales.sortBy(x => (x \ "shop_name").asOpt[String].map (y => y).getOrElse(""))).toString)
 				writer.flush
 				writer.close
 			}
@@ -90,7 +97,7 @@ class scraper_dispatch extends Actor
 			{
 				val writer = new FileWriter(new File("output/class.json"))
 				val sales = result.map (x => (x \ "class").asOpt[List[JsValue]].map (x => x).getOrElse(Nil)).flatten
-				writer.write(toJson(sales).toString)
+				writer.write(toJson(sales.sortBy(x => (x \ "shop_name").asOpt[String].map (y => y).getOrElse(""))).toString)
 				writer.flush
 				writer.close
 			}

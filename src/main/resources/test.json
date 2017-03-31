@@ -1,0 +1,30 @@
+[
+    {
+        "host": "http://www.dianping.com",
+        "platform": "大众点评",
+        "category": "产品页面测试",
+        "url": "http://t.dianping.com/deal/10291300",
+        "page": "",
+        "upper": "0",
+        "container": {
+            "defines": ["shop_name", "description", "price", "ori_price", "sold", "validate_data", "age_boundary", "detail"],
+            "lst_entrance": ["images"],
+            "url": "",
+            "shop_name": "div.bd > h1.title",
+            "description": "div.bd > h2.sub-title",
+            "price": "div.bd > div.price-wrap > h3 > span.price-display",
+            "ori_price": "div.bd > div.price-wrap > h3 > span.discount > span.price-original",
+            "sold": "div.action-info > span > em",
+            "validate_date": "div.validate-date > span",
+            "age_boundary": "div#tab_show_1 > div > div > span:nth-child(1)",
+            "images": {
+                "entrance": "div.detail > div.img",
+                "defines": ["image"],
+                "image": {
+                    "elem": "img",
+                    "attr": "lazy-src-load"
+                }
+            }
+        }
+    }
+]

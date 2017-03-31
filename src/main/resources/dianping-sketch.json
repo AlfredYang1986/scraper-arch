@@ -34,23 +34,22 @@
                         "url": "",
                         "parent": "name",
                         "container": {
-                            "defines": ["name", "description", "price", "ori_price", "sold", "validate_data", "shop_name", "age_boundary", "detail"],
+                            "defines": ["shop_name", "description", "price", "ori_price", "sold", "validate_data", "age_boundary", "detail"],
                             "lst_entrance": ["images"],
                             "url": "",
-                            "name": "div.bd > h1.title",
+                            "shop_name": "div.bd > h1.title",
                             "description": "div.bd > h2.sub-title",
-                            "price": "div.bd > div.price-wrap > h3:nth-child(1)",
-                            "ori_price": "div.bd > div.price-wrap > h3:nth-child(2)",
+                            "price": "div.bd > div.price-wrap > h3 > span.price-display",
+                            "ori_price": "div.bd > div.price-wrap > h3 > span.discount > span.price-original",
                             "sold": "div.action-info > span > em",
                             "validate_date": "div.validate-date > span",
-                            "shop_name": "div.shoptitle > a",
                             "age_boundary": "div#tab_show_1 > div > div > span:nth-child(1)",
                             "images": {
-                                "entrance": "div.detail > ul",
+                                "entrance": "div.detail > div.img",
                                 "defines": ["image"],
                                 "image": {
-                                    "elem": "div.img > img",
-                                    "attr": "data-lazyload "
+                                    "elem": "img",
+                                    "attr": "lazy-src-load"
                                 }
                             }
                         }
@@ -63,13 +62,13 @@
                         "url": "",
                         "parent": "name",
                         "container": {
-                            "defines": ["name", "phone", "address", "shop_name", "course_type", "age_boundary", "course_schedule", "trial", "course_times", "course_length", "area"],
+                            "defines": ["name", "phone", "address", "shop_name", "course_type", "age_boundary", "course_schedule", "trial", "course_times", "course_length", "area", "price", "discount"],
                             "lst_entrance": ["images"],
                             "url": "",
-                            "name": "div.type-box:nth-child(1) > h3 > a",
+                            "name": "div.textshow > h3",
                             "phone": "div.hotline",
                             "address": "div.rst > span.address",
-                            "shop_name": "div.textshow > h3:nth-child(1)",
+                            "shop_name": "div.type-box:nth-child(1) > h3 > a",
                             "course_type": "div.parameter > table > tbody > tr:nth-child(1) > td:nth-child(1) > div.cont",
                             "age_boundary": "div.parameter > table > tbody > tr:nth-child(1) > td:nth-child(2) > div.cont",
                             "course_schedule": "div.parameter > table > tbody > tr:nth-child(2) > td:nth-child(1) > div.cont",
@@ -77,6 +76,8 @@
                             "course_times": "div.parameter > table > tbody > tr:nth-child(3) > td:nth-child(1) > div.cont",
                             "course_length": "div.parameter > table > tbody > tr:nth-child(3) > td:nth-child(2) > div.cont",
                             "area": "div.parameter > table > tbody > tr:nth-child(4) > td:nth-child(1) > div.cont",
+                            "price": "div.textshow > div > span.price-rel > span.originalPrice > em",
+                            "discount": "div.textshow > div > span.price-rel > span.priceDisplay",
                             "images": {
                                 "entrance": "div.graph-box > ul",
                                 "defines": ["image"],
@@ -140,23 +141,22 @@
                         "url": "",
                         "parent": "name",
                         "container": {
-                            "defines": ["name", "description", "price", "ori_price", "sold", "validate_data", "shop_name", "age_boundary", "detail"],
+                            "defines": ["shop_name", "description", "price", "ori_price", "sold", "validate_data", "age_boundary", "detail"],
                             "lst_entrance": ["images"],
                             "url": "",
-                            "name": "div.bd > h1.title",
+                            "shop_name": "div.bd > h1.title",
                             "description": "div.bd > h2.sub-title",
-                            "price": "div.bd > div.price-wrap > h3:nth-child(1)",
-                            "ori_price": "div.bd > div.price-wrap > h3:nth-child(2)",
+                            "price": "div.bd > div.price-wrap > h3 > span.price-display",
+                            "ori_price": "div.bd > div.price-wrap > h3 > span.discount > span.price-original",
                             "sold": "div.action-info > span > em",
                             "validate_date": "div.validate-date > span",
-                            "shop_name": "div.shoptitle > a",
                             "age_boundary": "div#tab_show_1 > div > div > span:nth-child(1)",
                             "images": {
-                                "entrance": "div.detail > ul",
+                                "entrance": "div.detail > div.img",
                                 "defines": ["image"],
                                 "image": {
-                                    "elem": "div.img > img",
-                                    "attr": "data-lazyload "
+                                    "elem": "img",
+                                    "attr": "lazy-src-load"
                                 }
                             }
                         }
@@ -169,13 +169,13 @@
                         "url": "",
                         "parent": "name",
                         "container": {
-                            "defines": ["name", "phone", "address", "shop_name", "course_type", "age_boundary", "course_schedule", "trial", "course_times", "course_length", "area"],
+                            "defines": ["name", "phone", "address", "shop_name", "course_type", "age_boundary", "course_schedule", "trial", "course_times", "course_length", "area", "price", "discount"],
                             "lst_entrance": ["images"],
                             "url": "",
-                            "name": "div.type-box:nth-child(1) > h3 > a",
+                            "name": "div.textshow > h3",
                             "phone": "div.hotline",
                             "address": "div.rst > span.address",
-                            "shop_name": "div.textshow > h3:nth-child(1)",
+                            "shop_name": "div.type-box:nth-child(1) > h3 > a",
                             "course_type": "div.parameter > table > tbody > tr:nth-child(1) > td:nth-child(1) > div.cont",
                             "age_boundary": "div.parameter > table > tbody > tr:nth-child(1) > td:nth-child(2) > div.cont",
                             "course_schedule": "div.parameter > table > tbody > tr:nth-child(2) > td:nth-child(1) > div.cont",
@@ -183,6 +183,8 @@
                             "course_times": "div.parameter > table > tbody > tr:nth-child(3) > td:nth-child(1) > div.cont",
                             "course_length": "div.parameter > table > tbody > tr:nth-child(3) > td:nth-child(2) > div.cont",
                             "area": "div.parameter > table > tbody > tr:nth-child(4) > td:nth-child(1) > div.cont",
+                            "price": "div.textshow > div > span.price-rel > span.originalPrice > em",
+                            "discount": "div.textshow > div > span.price-rel > span.priceDisplay",
                             "images": {
                                 "entrance": "div.graph-box > ul",
                                 "defines": ["image"],
@@ -246,23 +248,22 @@
                         "url": "",
                         "parent": "name",
                         "container": {
-                            "defines": ["name", "description", "price", "ori_price", "sold", "validate_data", "shop_name", "age_boundary", "detail"],
+                            "defines": ["shop_name", "description", "price", "ori_price", "sold", "validate_data", "age_boundary", "detail"],
                             "lst_entrance": ["images"],
                             "url": "",
-                            "name": "div.bd > h1.title",
+                            "shop_name": "div.bd > h1.title",
                             "description": "div.bd > h2.sub-title",
-                            "price": "div.bd > div.price-wrap > h3:nth-child(1)",
-                            "ori_price": "div.bd > div.price-wrap > h3:nth-child(2)",
+                            "price": "div.bd > div.price-wrap > h3 > span.price-display",
+                            "ori_price": "div.bd > div.price-wrap > h3 > span.discount > span.price-original",
                             "sold": "div.action-info > span > em",
                             "validate_date": "div.validate-date > span",
-                            "shop_name": "div.shoptitle > a",
                             "age_boundary": "div#tab_show_1 > div > div > span:nth-child(1)",
                             "images": {
-                                "entrance": "div.detail > ul",
+                                "entrance": "div.detail > div.img",
                                 "defines": ["image"],
                                 "image": {
-                                    "elem": "div.img > img",
-                                    "attr": "data-lazyload "
+                                    "elem": "img",
+                                    "attr": "lazy-src-load"
                                 }
                             }
                         }
@@ -275,13 +276,13 @@
                         "url": "",
                         "parent": "name",
                         "container": {
-                            "defines": ["name", "phone", "address", "shop_name", "course_type", "age_boundary", "course_schedule", "trial", "course_times", "course_length", "area"],
+                            "defines": ["name", "phone", "address", "shop_name", "course_type", "age_boundary", "course_schedule", "trial", "course_times", "course_length", "area", "price", "discount"],
                             "lst_entrance": ["images"],
                             "url": "",
-                            "name": "div.type-box:nth-child(1) > h3 > a",
+                            "name": "div.textshow > h3",
                             "phone": "div.hotline",
                             "address": "div.rst > span.address",
-                            "shop_name": "div.textshow > h3:nth-child(1)",
+                            "shop_name": "div.type-box:nth-child(1) > h3 > a",
                             "course_type": "div.parameter > table > tbody > tr:nth-child(1) > td:nth-child(1) > div.cont",
                             "age_boundary": "div.parameter > table > tbody > tr:nth-child(1) > td:nth-child(2) > div.cont",
                             "course_schedule": "div.parameter > table > tbody > tr:nth-child(2) > td:nth-child(1) > div.cont",
@@ -289,6 +290,8 @@
                             "course_times": "div.parameter > table > tbody > tr:nth-child(3) > td:nth-child(1) > div.cont",
                             "course_length": "div.parameter > table > tbody > tr:nth-child(3) > td:nth-child(2) > div.cont",
                             "area": "div.parameter > table > tbody > tr:nth-child(4) > td:nth-child(1) > div.cont",
+                            "price": "div.textshow > div > span.price-rel > span.originalPrice > em",
+                            "discount": "div.textshow > div > span.price-rel > span.priceDisplay",
                             "images": {
                                 "entrance": "div.graph-box > ul",
                                 "defines": ["image"],

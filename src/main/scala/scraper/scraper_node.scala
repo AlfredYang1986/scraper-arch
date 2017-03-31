@@ -68,6 +68,11 @@ case class scraper_node(val s : sketch,
 		val lst_entry = (sk \ "entrance").asOpt[String].map (x => x).getOrElse(throw new Exception("should be a string"))
 		val def_lst = (sk \ "defines").asOpt[List[String]].map (x => x).getOrElse(throw new Exception("should have defines"))
 
+		def elem2String(y : String, r : String) : JsValue =
+			if (y == "image" && r.startsWith("//"))
+				toJson("http:" + r)
+			else toJson(r)
+
 		Some(lst_name ->
 			toJson(d.select(lst_entry).toArray.toList.asInstanceOf[List[Element]].map { x =>
 				def_lst.map { y =>
@@ -77,10 +82,12 @@ case class scraper_node(val s : sketch,
 							val sjs = (sk \ y).asOpt[JsValue].get
 							val elem = (sjs \ "elem").asOpt[String].map (x => x).getOrElse("")
 							val attr = (sjs \ "attr").asOpt[String].map (x => x).getOrElse("")
-							val r = x.select(elem).attr(attr)
-							if (y == "image" && r.startsWith("//"))
-								y -> toJson("http:" + r)
-							else y -> toJson(r)
+//							println(s"image count is ${x.select(elem)}")
+							val r = x.select(elem)
+							if (r.size() > 1) {
+								val r_lst = x.select(elem).toArray.toList.asInstanceOf[List[Element]]
+								y -> toJson(r_lst.map (z => elem2String(y, z.attr(attr))))
+							} else y -> elem2String(y, r.attr(attr))
 						}
 					}
 				}.toMap
