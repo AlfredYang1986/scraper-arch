@@ -27,14 +27,12 @@ case class scraper_json_node(sv : sketch,
 				val tmp = documentParse(d).get
 				val sbs = s.subs.map (k => documentParseSubs(k._1, d))
 					.filterNot(_ == None).map(x => x.get._1 -> x.get._2).toMap
-
-//				val lst = s.lst_attrs.map (l => dobumentParseLstElem(l._1, d))
-//					.filterNot(_ == None).map (x => x.get._1 -> x.get._2).toMap
+				val lst = s.lst_attrs.map (l => dobumentParseLstElem(l._1, d))
+					.filterNot(_ == None).map (x => x.get._1 -> x.get._2).toMap
 
 				println(s"scraper doing with json ...")
 //				println(s"scraper doing with json $d ...")
-//				Some(toJson(tmp ++: sbs ++: lst))
-				Some(toJson(tmp ++: sbs))
+				Some(toJson(tmp ++: sbs ++: lst))
 
 			}.getOrElse(None)
 
@@ -65,36 +63,15 @@ case class scraper_json_node(sv : sketch,
 	}
 
 	def dobumentParseLstElem(lst_name : String, d : JsValue) : Option[(String, JsValue)] = {
-//		val sk = s.lst_attrs.get(lst_name).get
-//
-//		val lst_entry = (sk \ "entrance").asOpt[String].map (x => x).getOrElse(throw new Exception("should be a string"))
-//		val def_lst = (sk \ "defines").asOpt[List[String]].map (x => x).getOrElse(throw new Exception("should have defines"))
-//
-//		def elem2String(y : String, r : String) : JsValue =
-//			if (y == "image" && r.startsWith("//"))
-//				toJson("http:" + r)
-//			else toJson(r)
-//
-//		Some(lst_name ->
-//			toJson(d.select(lst_entry).toArray.toList.asInstanceOf[List[Element]].map { x =>
-//				def_lst.map { y =>
-//					(sk \ y).asOpt[String] match {
-//						case Some(k) => y -> toJson(x.select(k).text)
-//						case None => {
-//							val sjs = (sk \ y).asOpt[JsValue].get
-//							val elem = (sjs \ "elem").asOpt[String].map (x => x).getOrElse("")
-//							val attr = (sjs \ "attr").asOpt[String].map (x => x).getOrElse("")
-//							//							println(s"image count is ${x.select(elem)}")
-//							val r = x.select(elem)
-//							if (r.size() > 1) {
-//								val r_lst = x.select(elem).toArray.toList.asInstanceOf[List[Element]]
-//								y -> toJson(r_lst.map (z => elem2String(y, z.attr(attr))))
-//							} else y -> elem2String(y, r.attr(attr))
-//						}
-//					}
-//				}.toMap
-//			}))
-		None
+		val x = s.lst_attrs.get(lst_name).get
+
+			x.asOpt[String] match {
+				case None => {
+					val sjs = x.asOpt[List[String]].get
+					Some(lst_name -> toJson(Js2String(d, sjs)))
+				}
+				case Some(y) => Some(lst_name -> toJson(Js2String(d, y :: Nil)))
+			}
 	}
 
 	def documentParseSubs(subs: String, d : JsValue) : Option[(String, JsValue)] = {
