@@ -23,7 +23,7 @@ class scrapter_slave extends Actor with ActorLogging{
 	override def receive: Receive = {
 		case sn : scraper_node => {
 			val f = UUID.randomUUID.toString
-			val writer = new FileWriter(new File(path + f))
+			val writer = new FileWriter(new File(path + sn.s.platform.get + "/" + f))
 			val result = sn.process
 			if (result.isEmpty) println("job error")
 			else writer.write(result.get.toString)

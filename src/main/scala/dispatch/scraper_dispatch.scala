@@ -9,12 +9,12 @@ import play.api.libs.json.Json.toJson
 import scala.concurrent.duration._
 import scala.concurrent.stm._
 import scala.concurrent.ExecutionContext.Implicits.global
-
 import signal.dis_signal.{shutting_down, _}
 import job.scraper_job
+import merge._
 import play.api.libs.json.{JsValue, Json}
 import sketch.sketch
-import scraper.scraper_node
+import scraper.{scraper_json_node, scraper_node}
 
 /**
   * Created by  on 30/03/2017.
@@ -39,12 +39,20 @@ class scraper_dispatch extends Actor
 				val url = (x._2 \ "url").asOpt[String].map (x => x).getOrElse(throw new Exception("must have url"))
 				val page = (x._2 \ "page").asOpt[String].map (x => x).getOrElse(throw new Exception("must have page"))
 				val upper = (x._2 \ "upper").asOpt[String].map (x => x.toInt).getOrElse(0)
-
-				if (page.isEmpty)
-					scraper_job(scraper_node(x._1, Some(url)) :: Nil)
-				else
-					scraper_job((1 to upper).map (y => scraper_node(x._1, Some(url + page + y))).toList)
-
+				(x._2 \ "protocol").asOpt[String].map (x => x).getOrElse(throw new Exception("should have protocol")) match {
+					case "html" => {
+						if (page.isEmpty)
+							scraper_job(scraper_node(x._1, Some(url)) :: Nil)
+						else
+							scraper_job((1 to upper).map (y => scraper_node(x._1, Some(url + page + y))).toList)
+					}
+					case "json" => {
+						if (page.isEmpty)
+							scraper_job(scraper_json_node(x._1, Some(url)) :: Nil)
+						else
+							scraper_job((1 to upper).map (y => scraper_json_node(x._1, Some(url + page + y))).toList)
+					}
+				}
 			} match {
 				case head :: tail => {
 					atomic { implicit tnx =>
@@ -53,9 +61,6 @@ class scraper_dispatch extends Actor
 					}
 				}
 			}
-			println(r)
-			println(current.single.get)
-			println(waiting_lst.single.get)
 
 			(1 to core_number) foreach { _ =>
 				signStep(router)
@@ -73,34 +78,8 @@ class scraper_dispatch extends Actor
 		}
 		case merge_result() => {
 			println("merge result")
-			val file = "src/main/resources/data/"
-			val tf = new File(file)
-			val result = tf.listFiles.filter(x => x.isFile && !x.isHidden).map(x => x.getPath).toList.map { f =>
-				Json.parse(new FileInputStream(f)).asOpt[JsValue].map (x => (x \ "shop").asOpt[List[JsValue]].get).getOrElse(Nil)
-			}.flatten
-
-			{
-				val writer = new FileWriter(new File("output/origin.json"))
-				writer.write(toJson(result.sortBy(x => (x \ "name").asOpt[String].map (y => y).getOrElse(""))).toString)
-				writer.flush
-				writer.close
-			}
-
-			{
-				val writer = new FileWriter(new File("output/sales.json"))
-				val sales = result.map (x => (x \ "sales").asOpt[List[JsValue]].map (x => x).getOrElse(Nil)).flatten
-				writer.write(toJson(sales.sortBy(x => (x \ "shop_name").asOpt[String].map (y => y).getOrElse(""))).toString)
-				writer.flush
-				writer.close
-			}
-
-			{
-				val writer = new FileWriter(new File("output/class.json"))
-				val sales = result.map (x => (x \ "class").asOpt[List[JsValue]].map (x => x).getOrElse(Nil)).flatten
-				writer.write(toJson(sales.sortBy(x => (x \ "shop_name").asOpt[String].map (y => y).getOrElse(""))).toString)
-				writer.flush
-				writer.close
-			}
+			dianping_merge()
+			weiyi_merge()
 
 			self ! shutting_down()
 		}

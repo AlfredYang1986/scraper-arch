@@ -11,8 +11,12 @@ import sketch.sketch
 /**
   * Created by Alfred on 28/03/2017.
   */
-case class scraper_node(val s : sketch,
-                        var u : Option[String] = None) {
+object scraper_node {
+	def apply(sv: sketch, uv: Option[String] = None): scraper_node = new scraper_node(sv, uv)
+}
+
+class scraper_node(val s : sketch,
+                   var u : Option[String] = None) {
 
 	def process : Option[JsValue] = {
 		if (u.isEmpty)

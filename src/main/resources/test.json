@@ -1,30 +1,17 @@
 [
     {
-        "host": "http://www.dianping.com",
-        "platform": "大众点评",
-        "category": "产品页面测试",
-        "url": "http://t.dianping.com/deal/10291300",
+        "host": "https://www.wegenart.com",
+        "platform": "为艺",
+        "category": "老师",
+        "url": "https://www.wegenart.com/teacher/575420496af1bc54ce000065",
         "page": "",
         "upper": "0",
         "container": {
-            "defines": ["shop_name", "description", "price", "ori_price", "sold", "validate_data", "age_boundary", "detail"],
-            "lst_entrance": ["images"],
-            "url": "",
-            "shop_name": "div.bd > h1.title",
-            "description": "div.bd > h2.sub-title",
-            "price": "div.bd > div.price-wrap > h3 > span.price-display",
-            "ori_price": "div.bd > div.price-wrap > h3 > span.discount > span.price-original",
-            "sold": "div.action-info > span > em",
-            "validate_date": "div.validate-date > span",
-            "age_boundary": "div#tab_show_1 > div > div > span:nth-child(1)",
-            "images": {
-                "entrance": "div.detail > div.img",
-                "defines": ["image"],
-                "image": {
-                    "elem": "img",
-                    "attr": "lazy-src-load"
-                }
-            }
+            "defines": ["bio", "work", "awards", "description"],
+            "bio": "div.bio-section:nth-child(1) > div.bio-section-content > span.info-item > span.info-piece",
+            "word": "div.bio-section:nth-child(2) > div.bio-section-content > p > span.info-item > span.info-piece",
+            "awards": "div.bio-section:nth-child(4) > div.bio-section-content > p > span.info-item > span.info-piece",
+            "description": "div.bio-section:nth-child(5) > div.bio-section-content > pre"
         }
     }
 ]

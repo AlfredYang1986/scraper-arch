@@ -1,0 +1,40 @@
+[
+    {
+        "host": "https://www.wegenart.com",
+        "platform": "为艺",
+        "category": "老师",
+        "protocol": "json",
+        "url": "https://www.wegenart.com/api/teachers?city=%E5%8C%97%E4%BA%AC%E5%B8%82&sort=%7B%22price%22%3A-1%7D&classPlace=BOTH&instruments=&limit=1000",
+        "page": "",
+        "upper": "0",
+        "container": {
+            "entrance": {},
+            "url": "",
+            "defines": [],
+            "sub_entrance": ["teacher"],
+            "teacher": {
+                "entrance": "items",
+                "url": "",
+                "container": {
+                    "defines": ["schoolage", "classPlace", "concept", "price", "level", "availability", "image", "phone", "birthday", "gender", "name", "city"],
+                    "lst_entrance": ["awards", "instruments", "jobTitles"],
+                    "schoolage": "schoolage",
+                    "classPlace": "classPlace",
+                    "concept": "concept",
+                    "price": "price",
+                    "level": "level",
+                    "availability": "availability",
+                    "image": "avatar",
+                    "phone": "phone",
+                    "birthday": "birthday",
+                    "gender": "gender",
+                    "name": "name",
+                    "city": "city",
+                    "jobTitles": ["jobTitles > unitname", "jobTitles > name"],
+                    "instruments": "instruments > name",
+                    "awards": ["awards > awardYear", "awards > awardName", "awards > awardResult"]
+                }
+            }
+        }
+    }
+]

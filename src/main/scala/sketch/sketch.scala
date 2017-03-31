@@ -20,6 +20,7 @@ trait sketch {
 	var host : Option[String] = None
 	var platform : Option[String] = None
 	var category : Option[String] = None
+	var protocol : Option[String] = None
 	var entrance : Option[JsValue] = None
 	var url : Option[String] = None
 
@@ -36,6 +37,8 @@ trait sketch {
 								else category.get
 	def getHost : String = if (host.isEmpty) parent.map(x => x.getHost).getOrElse(throw new Exception("should have host"))
 							else host.get
+	def getProtocol : String = if (protocol.isEmpty) parent.map(x => x.getHost).getOrElse(throw new Exception("should have protocol"))
+								else protocol.get
 
 	def dataFromNode(node : JsValue) : sketch = {
 		host = (node \ "host").asOpt[String]
@@ -44,6 +47,7 @@ trait sketch {
 
 		entrance = (node \ "entrance").asOpt[JsValue]
 		url = (node \ "url").asOpt[String]
+		protocol = (node \ "protocol").asOpt[String]
 
 		val container = (node \ "container").asOpt[JsValue].map (x => x).getOrElse(null)
 

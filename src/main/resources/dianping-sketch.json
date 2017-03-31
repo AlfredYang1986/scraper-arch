@@ -3,6 +3,7 @@
         "host": "http://www.dianping.com",
         "platform": "大众点评",
         "category": "幼儿教育",
+        "protocol": "html",
         "url": "http://www.dianping.com/search/category/2/70/g188",
         "page": "p",
         "upper": "50",
