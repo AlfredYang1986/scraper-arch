@@ -1,0 +1,392 @@
+[
+    {
+        "host": "http://bj.juesheng.com",
+        "platform": "决胜网",
+        "category": "音乐",
+        "url": "http://bj.juesheng.com/shop-list/yinyue/",
+        "page": "p-",
+        "upper": "9",
+        "container": {
+            "entrance": {},
+            "url": "",
+            "defines": [],
+            "sub_entrance": ["shop"],
+            "shop": {
+                "entrance": {
+                    "elem": "div.product-list > ul > li > div.list-item-right > p.product-title > a",
+                    "attr": "href"
+                },
+                "defines": ["shopname"],
+                "shopname": "div.product-list > ul > li > div.list-item-right > p.product-title > a > em",
+                "url": "",
+                "container": {
+                    "defines": ["name", "address", "comment_numb", "phone", "schedule"],
+                    "lst_entrance": ["comments"],
+                    "sub_entrance": ["sales"],
+                    "name": "div.intr-l > div.head-line > h1",
+                    "address": "div.intr-l > div.business-infor > p:nth-child(1) > span",
+                    "comment_numb": "div.intr-l > div.score-count > span > a",
+                    "phone": "div.intr-l > div.business-infor > p:nth-child(2) > span",
+                    "schedule": "div.intr-l > div.business-infor > p:nth-child(4) > span",
+                    "sales": {
+                        "entrance": {
+                            "elem": "ul.produc-list > li > div.produ-infor > p.produ-title > a",
+                            "attr": "href"
+                        },
+                        "url": "",
+                        "parent": "name",
+                        "container": {
+                            "defines": ["name", "sub_title", "description", "price", "ori_price", "validate_data", "age_boundary", "time_able", "book_info", "tips", "course_length", "capacity_numb"],
+                            "lst_entrance": ["images", "sale_comments"],
+                            "url": "",
+                            "name": "div.product > h1.prd-title",
+                            "sub_title" : "div.product > h2.prd-subtitle",
+                            "description": "div.cousers-desc",
+                            "price": "div.choice-cntr > div.price > span.tg-price",
+                            "ori_price": "div.choice-cntr > div.price > span.normal-price > s",
+                            "validate_date": "div.infor-detail > table > tr:nth-child(1) > td",
+                            "age_boundary": "div.choice-cntr > div.suitable > span.font-b",
+                            "time_able": "div.infor-detail > table > tr:nth-child(2) > td",
+                            "book_info": "div.infor-detail > table > tr:nth-child(3) > td",
+                            "tips": "div.infor-detail > table > tr:nth-child(5) > td",
+                            "course_length": "div.cousers-detail > p:nth-child(1) > span",
+                            "capacity_numb": "div.cousers-detail > p:nth-child(2) > span",
+                            "images": {
+                                "entrance": "div.dp-cont",
+                                "defines": ["image"],
+                                "image": {
+                                    "elem": "div.img > img",
+                                    "attr": "src"
+                                }
+                            },
+                            "sale_comments": {
+                                "entrance": "ul.comments-list > li",
+                                "defines": ["name", "content"],
+                                "name": "div.nick-name > em",
+                                "content": "div.detail-content > p.longBiz"
+                            }
+                        }
+                    },
+                    "comments": {
+                        "entrance": "ul.comments-list > li",
+                        "defines": ["name", "content"],
+                        "name": "div.nick-name > em",
+                        "content": "div.detail-content > p.longBiz"
+                    }
+                }
+            }
+        }
+    },
+    {
+        "host": "http://bj.juesheng.com",
+        "platform": "决胜网",
+        "category": "舞蹈",
+        "url": "http://bj.juesheng.com/shop-list/wudao/",
+        "page": "p-",
+        "upper": "9",
+        "container": {
+            "entrance": {},
+            "url": "",
+            "defines": [],
+            "sub_entrance": ["shop"],
+            "shop": {
+                "entrance": {
+                    "elem": "div.product-list > ul > li > div.list-item-right > p.product-title > a",
+                    "attr": "href"
+                },
+                "defines": ["shopname"],
+                "shopname": "div.product-list > ul > li > div.list-item-right > p.product-title > a > em",
+                "url": "",
+                "container": {
+                    "defines": ["name", "address", "comment_numb", "phone", "schedule"],
+                    "lst_entrance": ["comments"],
+                    "sub_entrance": ["sales"],
+                    "name": "div.intr-l > div.head-line > h1",
+                    "address": "div.intr-l > div.business-infor > p:nth-child(1) > span",
+                    "comment_numb": "div.intr-l > div.score-count > span > a",
+                    "phone": "div.intr-l > div.business-infor > p:nth-child(2) > span",
+                    "schedule": "div.intr-l > div.business-infor > p:nth-child(4) > span",
+                    "sales": {
+                        "entrance": {
+                            "elem": "ul.produc-list > li > div.produ-infor > p.produ-title > a",
+                            "attr": "href"
+                        },
+                        "url": "",
+                        "parent": "name",
+                        "container": {
+                            "defines": ["name", "sub_title", "description", "price", "ori_price", "validate_data", "age_boundary", "time_able", "book_info", "tips", "course_length", "capacity_numb"],
+                            "lst_entrance": ["images", "sale_comments"],
+                            "url": "",
+                            "name": "div.product > h1.prd-title",
+                            "sub_title" : "div.product > h2.prd-subtitle",
+                            "description": "div.cousers-desc",
+                            "price": "div.choice-cntr > div.price > span.tg-price",
+                            "ori_price": "div.choice-cntr > div.price > span.normal-price > s",
+                            "validate_date": "div.infor-detail > table > tr:nth-child(1) > td",
+                            "age_boundary": "div.choice-cntr > div.suitable > span.font-b",
+                            "time_able": "div.infor-detail > table > tr:nth-child(2) > td",
+                            "book_info": "div.infor-detail > table > tr:nth-child(3) > td",
+                            "tips": "div.infor-detail > table > tr:nth-child(5) > td",
+                            "course_length": "div.cousers-detail > p:nth-child(1) > span",
+                            "capacity_numb": "div.cousers-detail > p:nth-child(2) > span",
+                            "images": {
+                                "entrance": "div.dp-cont",
+                                "defines": ["image"],
+                                "image": {
+                                    "elem": "div.img > img",
+                                    "attr": "src"
+                                }
+                            },
+                            "sale_comments": {
+                                "entrance": "ul.comments-list > li",
+                                "defines": ["name", "content"],
+                                "name": "div.nick-name > em",
+                                "content": "div.detail-content > p.longBiz"
+                            }
+                        }
+                    },
+                    "comments": {
+                        "entrance": "ul.comments-list > li",
+                        "defines": ["name", "content"],
+                        "name": "div.nick-name > em",
+                        "content": "div.detail-content > p.longBiz"
+                    }
+                }
+            }
+        }
+    },
+    {
+        "host": "http://bj.juesheng.com",
+        "platform": "决胜网",
+        "category": "美术",
+        "url": "http://bj.juesheng.com/shop-list/meishu/",
+        "page": "p-",
+        "upper": "9",
+        "container": {
+            "entrance": {},
+            "url": "",
+            "defines": [],
+            "sub_entrance": ["shop"],
+            "shop": {
+                "entrance": {
+                    "elem": "div.product-list > ul > li > div.list-item-right > p.product-title > a",
+                    "attr": "href"
+                },
+                "defines": ["shopname"],
+                "shopname": "div.product-list > ul > li > div.list-item-right > p.product-title > a > em",
+                "url": "",
+                "container": {
+                    "defines": ["name", "address", "comment_numb", "phone", "schedule"],
+                    "lst_entrance": ["comments"],
+                    "sub_entrance": ["sales"],
+                    "name": "div.intr-l > div.head-line > h1",
+                    "address": "div.intr-l > div.business-infor > p:nth-child(1) > span",
+                    "comment_numb": "div.intr-l > div.score-count > span > a",
+                    "phone": "div.intr-l > div.business-infor > p:nth-child(2) > span",
+                    "schedule": "div.intr-l > div.business-infor > p:nth-child(4) > span",
+                    "sales": {
+                        "entrance": {
+                            "elem": "ul.produc-list > li > div.produ-infor > p.produ-title > a",
+                            "attr": "href"
+                        },
+                        "url": "",
+                        "parent": "name",
+                        "container": {
+                            "defines": ["name", "sub_title", "description", "price", "ori_price", "validate_data", "age_boundary", "time_able", "book_info", "tips", "course_length", "capacity_numb"],
+                            "lst_entrance": ["images", "sale_comments"],
+                            "url": "",
+                            "name": "div.product > h1.prd-title",
+                            "sub_title" : "div.product > h2.prd-subtitle",
+                            "description": "div.cousers-desc",
+                            "price": "div.choice-cntr > div.price > span.tg-price",
+                            "ori_price": "div.choice-cntr > div.price > span.normal-price > s",
+                            "validate_date": "div.infor-detail > table > tr:nth-child(1) > td",
+                            "age_boundary": "div.choice-cntr > div.suitable > span.font-b",
+                            "time_able": "div.infor-detail > table > tr:nth-child(2) > td",
+                            "book_info": "div.infor-detail > table > tr:nth-child(3) > td",
+                            "tips": "div.infor-detail > table > tr:nth-child(5) > td",
+                            "course_length": "div.cousers-detail > p:nth-child(1) > span",
+                            "capacity_numb": "div.cousers-detail > p:nth-child(2) > span",
+                            "images": {
+                                "entrance": "div.dp-cont",
+                                "defines": ["image"],
+                                "image": {
+                                    "elem": "div.img > img",
+                                    "attr": "src"
+                                }
+                            },
+                            "sale_comments": {
+                                "entrance": "ul.comments-list > li",
+                                "defines": ["name", "content"],
+                                "name": "div.nick-name > em",
+                                "content": "div.detail-content > p.longBiz"
+                            }
+                        }
+                    },
+                    "comments": {
+                        "entrance": "ul.comments-list > li",
+                        "defines": ["name", "content"],
+                        "name": "div.nick-name > em",
+                        "content": "div.detail-content > p.longBiz"
+                    }
+                }
+            }
+        }
+    },
+    {
+        "host": "http://bj.juesheng.com",
+        "platform": "决胜网",
+        "category": "体育",
+        "url": "http://bj.juesheng.com/shop-list/tiyu/",
+        "page": "p-",
+        "upper": "9",
+        "container": {
+            "entrance": {},
+            "url": "",
+            "defines": [],
+            "sub_entrance": ["shop"],
+            "shop": {
+                "entrance": {
+                    "elem": "div.product-list > ul > li > div.list-item-right > p.product-title > a",
+                    "attr": "href"
+                },
+                "defines": ["shopname"],
+                "shopname": "div.product-list > ul > li > div.list-item-right > p.product-title > a > em",
+                "url": "",
+                "container": {
+                    "defines": ["name", "address", "comment_numb", "phone", "schedule"],
+                    "lst_entrance": ["comments"],
+                    "sub_entrance": ["sales"],
+                    "name": "div.intr-l > div.head-line > h1",
+                    "address": "div.intr-l > div.business-infor > p:nth-child(1) > span",
+                    "comment_numb": "div.intr-l > div.score-count > span > a",
+                    "phone": "div.intr-l > div.business-infor > p:nth-child(2) > span",
+                    "schedule": "div.intr-l > div.business-infor > p:nth-child(4) > span",
+                    "sales": {
+                        "entrance": {
+                            "elem": "ul.produc-list > li > div.produ-infor > p.produ-title > a",
+                            "attr": "href"
+                        },
+                        "url": "",
+                        "parent": "name",
+                        "container": {
+                            "defines": ["name", "sub_title", "description", "price", "ori_price", "validate_data", "age_boundary", "time_able", "book_info", "tips", "course_length", "capacity_numb"],
+                            "lst_entrance": ["images", "sale_comments"],
+                            "url": "",
+                            "name": "div.product > h1.prd-title",
+                            "sub_title" : "div.product > h2.prd-subtitle",
+                            "description": "div.cousers-desc",
+                            "price": "div.choice-cntr > div.price > span.tg-price",
+                            "ori_price": "div.choice-cntr > div.price > span.normal-price > s",
+                            "validate_date": "div.infor-detail > table > tr:nth-child(1) > td",
+                            "age_boundary": "div.choice-cntr > div.suitable > span.font-b",
+                            "time_able": "div.infor-detail > table > tr:nth-child(2) > td",
+                            "book_info": "div.infor-detail > table > tr:nth-child(3) > td",
+                            "tips": "div.infor-detail > table > tr:nth-child(5) > td",
+                            "course_length": "div.cousers-detail > p:nth-child(1) > span",
+                            "capacity_numb": "div.cousers-detail > p:nth-child(2) > span",
+                            "images": {
+                                "entrance": "div.dp-cont",
+                                "defines": ["image"],
+                                "image": {
+                                    "elem": "div.img > img",
+                                    "attr": "src"
+                                }
+                            },
+                            "sale_comments": {
+                                "entrance": "ul.comments-list > li",
+                                "defines": ["name", "content"],
+                                "name": "div.nick-name > em",
+                                "content": "div.detail-content > p.longBiz"
+                            }
+                        }
+                    },
+                    "comments": {
+                        "entrance": "ul.comments-list > li",
+                        "defines": ["name", "content"],
+                        "name": "div.nick-name > em",
+                        "content": "div.detail-content > p.longBiz"
+                    }
+                }
+            }
+        }
+    },
+    {
+        "host": "http://bj.juesheng.com",
+        "platform": "决胜网",
+        "category": "益智",
+        "url": "http://bj.juesheng.com/shop-list/yizhi/",
+        "page": "p-",
+        "upper": "9",
+        "container": {
+            "entrance": {},
+            "url": "",
+            "defines": [],
+            "sub_entrance": ["shop"],
+            "shop": {
+                "entrance": {
+                    "elem": "div.product-list > ul > li > div.list-item-right > p.product-title > a",
+                    "attr": "href"
+                },
+                "defines": ["shopname"],
+                "shopname": "div.product-list > ul > li > div.list-item-right > p.product-title > a > em",
+                "url": "",
+                "container": {
+                    "defines": ["name", "address", "comment_numb", "phone", "schedule"],
+                    "lst_entrance": ["comments"],
+                    "sub_entrance": ["sales"],
+                    "name": "div.intr-l > div.head-line > h1",
+                    "address": "div.intr-l > div.business-infor > p:nth-child(1) > span",
+                    "comment_numb": "div.intr-l > div.score-count > span > a",
+                    "phone": "div.intr-l > div.business-infor > p:nth-child(2) > span",
+                    "schedule": "div.intr-l > div.business-infor > p:nth-child(4) > span",
+                    "sales": {
+                        "entrance": {
+                            "elem": "ul.produc-list > li > div.produ-infor > p.produ-title > a",
+                            "attr": "href"
+                        },
+                        "url": "",
+                        "parent": "name",
+                        "container": {
+                            "defines": ["name", "sub_title", "description", "price", "ori_price", "validate_data", "age_boundary", "time_able", "book_info", "tips", "course_length", "capacity_numb"],
+                            "lst_entrance": ["images", "sale_comments"],
+                            "url": "",
+                            "name": "div.product > h1.prd-title",
+                            "sub_title" : "div.product > h2.prd-subtitle",
+                            "description": "div.cousers-desc",
+                            "price": "div.choice-cntr > div.price > span.tg-price",
+                            "ori_price": "div.choice-cntr > div.price > span.normal-price > s",
+                            "validate_date": "div.infor-detail > table > tr:nth-child(1) > td",
+                            "age_boundary": "div.choice-cntr > div.suitable > span.font-b",
+                            "time_able": "div.infor-detail > table > tr:nth-child(2) > td",
+                            "book_info": "div.infor-detail > table > tr:nth-child(3) > td",
+                            "tips": "div.infor-detail > table > tr:nth-child(5) > td",
+                            "course_length": "div.cousers-detail > p:nth-child(1) > span",
+                            "capacity_numb": "div.cousers-detail > p:nth-child(2) > span",
+                            "images": {
+                                "entrance": "div.dp-cont",
+                                "defines": ["image"],
+                                "image": {
+                                    "elem": "div.img > img",
+                                    "attr": "src"
+                                }
+                            },
+                            "sale_comments": {
+                                "entrance": "ul.comments-list > li",
+                                "defines": ["name", "content"],
+                                "name": "div.nick-name > em",
+                                "content": "div.detail-content > p.longBiz"
+                            }
+                        }
+                    },
+                    "comments": {
+                        "entrance": "ul.comments-list > li",
+                        "defines": ["name", "content"],
+                        "name": "div.nick-name > em",
+                        "content": "div.detail-content > p.longBiz"
+                    }
+                }
+            }
+        }
+    }
+]
