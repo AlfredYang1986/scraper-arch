@@ -23,10 +23,16 @@ object scarper_main extends App {
 			}
 		}
 
+<<<<<<< Updated upstream
 	def filePath(a : List[String]) : Option[String] = a match {
 			case Nil => None
 			case head :: _ => Some(head)
 		}
+=======
+		// val str = StdIn.readLine()
+		// val op = str.toInt
+		val op = 4
+>>>>>>> Stashed changes
 
 	override def main(args: Array[String]): Unit = {
 		val path = "src/main/resources/"
