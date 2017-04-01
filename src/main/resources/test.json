@@ -18,7 +18,7 @@
             "schedule": "div.intr-l > div.business-infor > p:nth-child(4) > span",
             "sales": {
                 "entrance": {
-                    "elem": "ul.produc-list > li > div.produ-infor > p.produ-title > a",
+                    "elem": "div#list > a",
                     "attr": "href"
                 },
                 "url": "",
@@ -56,7 +56,7 @@
                 }
             },
             "comments": {
-                "entrance": "#commentList > li",
+                "entrance": "div.comment-cntr > ul#commentList > li",
                 "defines": ["name", "content"],
                 "name": "div.comment-area > h2",
                 "content": "div.comment-area > div.comment-content > p.content"
