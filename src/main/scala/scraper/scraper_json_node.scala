@@ -65,13 +65,16 @@ case class scraper_json_node(sv : sketch,
 	def dobumentParseLstElem(lst_name : String, d : JsValue) : Option[(String, JsValue)] = {
 		val x = s.lst_attrs.get(lst_name).get
 
-			x.asOpt[String] match {
-				case None => {
-					val sjs = x.asOpt[List[String]].get
-					Some(lst_name -> toJson(Js2String(d, sjs)))
+		Some(lst_name -> toJson(
+			(d \ lst_name).asOpt[List[JsValue]].map (l => l).getOrElse(Nil).map { iter =>
+				x.asOpt[String] match {
+					case None => {
+						val sjs = x.asOpt[List[String]].get
+						toJson(Js2String(iter, sjs))
+					}
+					case Some(y) => toJson(Js2String(iter, y :: Nil))
 				}
-				case Some(y) => Some(lst_name -> toJson(Js2String(d, y :: Nil)))
-			}
+			}))
 	}
 
 	def documentParseSubs(subs: String, d : JsValue) : Option[(String, JsValue)] = {
@@ -79,9 +82,7 @@ case class scraper_json_node(sv : sketch,
 		val sjs = sk.entrance.get.asOpt[String].get
 
 		if (!sjs.isEmpty) {
-			println(sjs)
 			val s = (d \ sjs).asOpt[List[JsValue]].map (x => x).getOrElse(Nil)
-			println(s.length)
 			if (!s.isEmpty)
 				Some(subs -> toJson(s.map (js => scraper_json_node(sk, None, Some(js)).process.get)))
 			else None
@@ -104,6 +105,6 @@ case class scraper_json_node(sv : sketch,
 		}
 
 		val l = elem.split(">").map (_.trim).toList
-		str2Elem(d, l).asOpt[String].map (x => x).getOrElse("")
+		str2Elem(d, l).asOpt[String].map (x => x).getOrElse(str2Elem(d, l).asOpt[Int].map (x => x.toString).getOrElse(""))
 	}
 }

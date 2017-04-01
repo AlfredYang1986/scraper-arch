@@ -30,9 +30,9 @@
                     "gender": "gender",
                     "name": "name",
                     "city": "city",
-                    "jobTitles": ["jobTitles > unitname", "jobTitles > name"],
-                    "instruments": "instruments > name",
-                    "awards": ["awards > awardYear", "awards > awardName", "awards > awardResult"]
+                    "jobTitles": ["unitname", "name"],
+                    "instruments": "name",
+                    "awards": ["awardYear", "awardName", "awardResult"]
                 }
             }
         }
