@@ -10,17 +10,12 @@ import scala.io.StdIn
 
 object scarper_main extends App {
 	def actions(a : List[String]) : (Int, Option[String]) = a match {
-			case Nil => {
-
-				(-1, None)
-			}
-			case head :: tail => {
-				head match {
+			case Nil => (-1, None)
+			case head :: tail => head match {
 					case "scraper" => (1, filePath(tail))
 					case "merge" => (0, None)
 					case _ => (-1, None)
 				}
-			}
 		}
 
 	def filePath(a : List[String]) : Option[String] = a match {
