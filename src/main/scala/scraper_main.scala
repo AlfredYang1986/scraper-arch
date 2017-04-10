@@ -1,10 +1,11 @@
 
-import play.api.libs.json.{JsValue, Json}
 import java.io.FileInputStream
 
-import akka.actor.ActorSystem
 import dispatch.scraper_dispatch
 import dispatch.signal.dis_signal._
+import excel.core.dianping_data_parse
+import akka.actor.ActorSystem
+import exchange.dianping_shops
 
 import scala.io.StdIn
 
@@ -51,6 +52,16 @@ object scarper_main extends App {
 			}
 		} else if (act == 2) {
 			println("exchange to database")
+
+			f_opt match {
+				case None => println("should have file path")
+				case Some(file) => {
+					val f = path + file
+					println(s"excel file is $f")
+					dianping_data_parse("""config/FieldNamesDataStruct.xml""", """config/xmlDataStruct.xml""", null).startParse(f, 1)
+					println(s"dianping shops count: ${dianping_shops.shops.length}")
+				}
+			}
 		}
 	}
 }
