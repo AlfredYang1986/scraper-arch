@@ -35,7 +35,7 @@
                         "url": "",
                         "parent": "name",
                         "container": {
-                            "defines": ["shop_name", "description", "price", "ori_price", "sold", "validate_data", "age_boundary", "detail"],
+                            "defines": ["shop_name", "description", "price", "ori_price", "sold", "validate_data", "age_boundary", "detail", "sale_explain", "high_light"],
                             "lst_entrance": ["images"],
                             "url": "",
                             "shop_name": "div.bd > h1.title",
@@ -45,6 +45,8 @@
                             "sold": "div.action-info > span > em",
                             "validate_date": "div.validate-date > span",
                             "age_boundary": "div#tab_show_1 > div > div > span:nth-child(1)",
+                            "sale_explain": "div.dptg-intro > div.detail:nth-child(6) > p.explain",
+                            "high_light": "div.dptg-intro > div.detail:nth-child(2) > div",
                             "images": {
                                 "entrance": "div.detail > div.img",
                                 "defines": ["image"],
@@ -63,7 +65,7 @@
                         "url": "",
                         "parent": "name",
                         "container": {
-                            "defines": ["name", "phone", "address", "shop_name", "course_type", "age_boundary", "course_schedule", "trial", "course_times", "course_length", "area", "price", "discount"],
+                            "defines": ["name", "phone", "address", "shop_name", "course_type", "age_boundary", "course_schedule", "trial", "course_times", "course_length", "area", "price", "discount", "course_description", "course_teacher"],
                             "lst_entrance": ["images"],
                             "url": "",
                             "name": "div.textshow > h3",
@@ -79,6 +81,8 @@
                             "area": "div.parameter > table > tbody > tr:nth-child(4) > td:nth-child(1) > div.cont",
                             "price": "div.textshow > div > span.price-rel > span.originalPrice > em",
                             "discount": "div.textshow > div > span.price-rel > span.priceDisplay",
+                            "course_teather":"div.parameter > table > tbody > tr:nth-child(6) > td:nth-child(1) > div.cont",
+                            "course_description":"div.parameter > table > tbody > tr:nth-chivld(5) > td:nth-child(1) > div.cont",
                             "images": {
                                 "entrance": "div.graph-box > ul",
                                 "defines": ["image"],
@@ -111,6 +115,7 @@
         "host": "http://www.dianping.com",
         "platform": "大众点评",
         "category": "幼儿才艺",
+        "protocol": "html",
         "url": "http://www.dianping.com/search/category/2/70/g27763",
         "page": "p",
         "upper": "50",
@@ -142,7 +147,7 @@
                         "url": "",
                         "parent": "name",
                         "container": {
-                            "defines": ["shop_name", "description", "price", "ori_price", "sold", "validate_data", "age_boundary", "detail"],
+                            "defines": ["shop_name", "description", "price", "ori_price", "sold", "validate_data", "age_boundary", "detail", "sale_explain", "high_light"],
                             "lst_entrance": ["images"],
                             "url": "",
                             "shop_name": "div.bd > h1.title",
@@ -152,6 +157,8 @@
                             "sold": "div.action-info > span > em",
                             "validate_date": "div.validate-date > span",
                             "age_boundary": "div#tab_show_1 > div > div > span:nth-child(1)",
+                            "sale_explain": "div.dptg-intro > div.detail:nth-child(6) > p.explain",
+                            "high_light": "div.dptg-intro > div.detail:nth-child(2) > div",
                             "images": {
                                 "entrance": "div.detail > div.img",
                                 "defines": ["image"],
@@ -170,7 +177,7 @@
                         "url": "",
                         "parent": "name",
                         "container": {
-                            "defines": ["name", "phone", "address", "shop_name", "course_type", "age_boundary", "course_schedule", "trial", "course_times", "course_length", "area", "price", "discount"],
+                            "defines": ["name", "phone", "address", "shop_name", "course_type", "age_boundary", "course_schedule", "trial", "course_times", "course_length", "area", "price", "discount", "course_description", "course_teacher"],
                             "lst_entrance": ["images"],
                             "url": "",
                             "name": "div.textshow > h3",
@@ -186,6 +193,8 @@
                             "area": "div.parameter > table > tbody > tr:nth-child(4) > td:nth-child(1) > div.cont",
                             "price": "div.textshow > div > span.price-rel > span.originalPrice > em",
                             "discount": "div.textshow > div > span.price-rel > span.priceDisplay",
+                            "course_teather":"div.parameter > table > tbody > tr:nth-child(6) > td:nth-child(1) > div.cont",
+                            "course_description":"div.parameter > table > tbody > tr:nth-chivld(5) > td:nth-child(1) > div.cont",
                             "images": {
                                 "entrance": "div.graph-box > ul",
                                 "defines": ["image"],
@@ -218,6 +227,7 @@
         "host": "http://www.dianping.com",
         "platform": "大众点评",
         "category": "托班/托儿所",
+        "protocol": "html",
         "url": "http://www.dianping.com/search/category/2/70/g20009",
         "page": "p",
         "upper": "10",
@@ -249,7 +259,7 @@
                         "url": "",
                         "parent": "name",
                         "container": {
-                            "defines": ["shop_name", "description", "price", "ori_price", "sold", "validate_data", "age_boundary", "detail"],
+                            "defines": ["shop_name", "description", "price", "ori_price", "sold", "validate_data", "age_boundary", "detail", "sale_explain", "high_light"],
                             "lst_entrance": ["images"],
                             "url": "",
                             "shop_name": "div.bd > h1.title",
@@ -259,6 +269,8 @@
                             "sold": "div.action-info > span > em",
                             "validate_date": "div.validate-date > span",
                             "age_boundary": "div#tab_show_1 > div > div > span:nth-child(1)",
+                            "sale_explain": "div.dptg-intro > div.detail:nth-child(6) > p.explain",
+                            "high_light": "div.dptg-intro > div.detail:nth-child(2) > div",
                             "images": {
                                 "entrance": "div.detail > div.img",
                                 "defines": ["image"],
@@ -277,7 +289,7 @@
                         "url": "",
                         "parent": "name",
                         "container": {
-                            "defines": ["name", "phone", "address", "shop_name", "course_type", "age_boundary", "course_schedule", "trial", "course_times", "course_length", "area", "price", "discount"],
+                            "defines": ["name", "phone", "address", "shop_name", "course_type", "age_boundary", "course_schedule", "trial", "course_times", "course_length", "area", "price", "discount", "course_description", "course_teacher"],
                             "lst_entrance": ["images"],
                             "url": "",
                             "name": "div.textshow > h3",
@@ -293,6 +305,8 @@
                             "area": "div.parameter > table > tbody > tr:nth-child(4) > td:nth-child(1) > div.cont",
                             "price": "div.textshow > div > span.price-rel > span.originalPrice > em",
                             "discount": "div.textshow > div > span.price-rel > span.priceDisplay",
+                            "course_teather":"div.parameter > table > tbody > tr:nth-child(6) > td:nth-child(1) > div.cont",
+                            "course_description":"div.parameter > table > tbody > tr:nth-chivld(5) > td:nth-child(1) > div.cont",
                             "images": {
                                 "entrance": "div.graph-box > ul",
                                 "defines": ["image"],

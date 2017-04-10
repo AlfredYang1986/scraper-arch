@@ -33,7 +33,7 @@ class scraper_node(val s : sketch,
 							.filterNot(_ == None).map (x => x.get._1 -> x.get._2).toMap
 
 				println(s"scraper doing with url $x ...")
-				Some(toJson(tmp ++: sbs ++: lst))
+				Some(toJson(tmp ++: sbs ++: lst ++: Map("url" -> toJson(x))))
 
 			}.getOrElse(None)
 

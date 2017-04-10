@@ -14,6 +14,7 @@ object scarper_main extends App {
 			case head :: tail => head match {
 					case "scraper" => (1, filePath(tail))
 					case "merge" => (0, None)
+					case "exchange" => (2, filePath(tail))
 					case _ => (-1, None)
 				}
 		}
@@ -39,7 +40,7 @@ object scarper_main extends App {
 		} else if (act == 0) {
 			println("only merge result")
 			s ! merge_result()
-		} else {
+		} else if (act == 1) {
 			f_opt match {
 				case None => println("should have file path")
 				case Some(file) => {
@@ -48,6 +49,8 @@ object scarper_main extends App {
 					s ! start(f)
 				}
 			}
+		} else if (act == 2) {
+			println("exchange to database")
 		}
 	}
 }

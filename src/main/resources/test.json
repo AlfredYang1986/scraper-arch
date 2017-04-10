@@ -2,64 +2,30 @@
     {
         "host": "http://bj.juesheng.com",
         "platform": "决胜网",
-        "category": "测试",
+        "category": "音乐",
         "protocol": "html",
-        "url": "http://bj.juesheng.com/shop/586840.html",
+        "url": "http://bj.juesheng.com/shop/588039.html",
         "page": "",
-        "upper": "0",
+        "upper": "9",
         "container": {
+            "entrance": "",
+            "url": "",
             "defines": ["name", "address", "comment_numb", "phone", "schedule"],
-            "lst_entrance": ["comments"],
             "sub_entrance": ["sales"],
             "name": "div.intr-l > div.head-line > h1",
             "address": "div.intr-l > div.business-infor > p:nth-child(1) > span",
-            "comment_numb": "div.intr-l > div.score-cntr > div.score-count > span > a",
+            "comment_numb": "div.score-count > span > a",
             "phone": "div.intr-l > div.business-infor > p:nth-child(2) > span",
             "schedule": "div.intr-l > div.business-infor > p:nth-child(4) > span",
             "sales": {
-                "entrance": {
-                    "elem": "div#list > a",
-                    "attr": "href"
-                },
+                "entrance": "",
                 "url": "",
-                "parent": "name",
+                "parent": "",
                 "container": {
-                    "defines": ["name", "sub_title", "description", "price", "ori_price", "validate_data", "age_boundary", "time_able", "book_info", "tips", "course_length", "capacity_numb"],
-                    "lst_entrance": ["images", "sale_comments"],
+                    "defines": ["name"],
                     "url": "",
-                    "name": "div.product > h1.prd-title",
-                    "sub_title" : "div.product > h2.prd-subtitle",
-                    "description": "div.cousers-desc",
-                    "price": "div.choice-cntr > div.price > span.tg-price",
-                    "ori_price": "div.choice-cntr > div.price > span.normal-price > s",
-                    "validate_date": "div.infor-detail > table > tr:nth-child(1) > td",
-                    "age_boundary": "div.choice-cntr > div.suitable > span.font-b",
-                    "time_able": "div.infor-detail > table > tr:nth-child(2) > td",
-                    "book_info": "div.infor-detail > table > tr:nth-child(3) > td",
-                    "tips": "div.infor-detail > table > tr:nth-child(5) > td",
-                    "course_length": "div.cousers-detail > p:nth-child(1) > span",
-                    "capacity_numb": "div.cousers-detail > p:nth-child(2) > span",
-                    "images": {
-                        "entrance": "div.dp-cont",
-                        "defines": ["image"],
-                        "image": {
-                            "elem": "div.img > img",
-                            "attr": "src"
-                        }
-                    },
-                    "sale_comments": {
-                        "entrance": "ul.comments-list > li",
-                        "defines": ["name", "content"],
-                        "name": "div.nick-name > em",
-                        "content": "div.detail-content > p.longBiz"
-                    }
+                    "name": "div.bd > h1.title"
                 }
-            },
-            "comments": {
-                "entrance": "div.comment-cntr > ul#commentList > li",
-                "defines": ["name", "content"],
-                "name": "div.comment-area > h2",
-                "content": "div.comment-area > div.comment-content > p.content"
             }
         }
     }
