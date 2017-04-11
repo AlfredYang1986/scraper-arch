@@ -25,5 +25,6 @@ object dianping_shops {
 		shops = tmp :: shops
 	}
 
-	def queryShopsUserId(shop_name : String) : Option[String] = None
+	def queryShopsUserId(shop_name : String) : String =
+		shops.find(x => (x \ "screen_name").asOpt[String].get == shop_name).map (x => (x \ "user_id").asOpt[String].get).getOrElse("")
 }
