@@ -17,4 +17,6 @@ object Sercurity {
 			String.valueOf(Math.floor(m - tmp))
 		}.toList
 	}
+
+	def getSercuritySeed : String = """AlfredYang"""
 }

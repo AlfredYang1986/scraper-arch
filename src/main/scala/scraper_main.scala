@@ -16,6 +16,7 @@ object scarper_main extends App {
 					case "scraper" => (1, filePath(tail))
 					case "merge" => (0, None)
 					case "exchange" => (2, filePath(tail))
+					case "online" => (3, None)
 					case _ => (-1, None)
 				}
 		}
@@ -61,8 +62,15 @@ object scarper_main extends App {
 					dianping_data_parse("""config/FieldNamesDataStruct.xml""", """config/xmlDataStruct.xml""", null).startParse(f, 1)
 					println(s"dianping shops count: ${dianping_shops.shops.length}")
 					println(s"dianping services count: ${dainping_service.kidnaps.length}")
+
+					dianping_shops.store2DB
+					dainping_service.store2DB
+					println(s"dianping save to DB End")
 				}
 			}
+		} else if (act == 3) {
+			dainping_service.onlineAllService
+			println(s"dianping online service end")
 		}
 	}
 }

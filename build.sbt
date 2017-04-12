@@ -45,6 +45,8 @@ libraryDependencies ++= Seq(
     // mongodb
     "org.mongodb.scala" %% "mongo-scala-driver" % "1.2.1",
     "org.mongodb.spark" %% "mongo-spark-connector" % "2.0.0",
+    "org.mongodb" % "casbah-core_2.11" % "3.1.1",
+	"org.mongodb" % "casbah_2.11" % "3.1.1",
 
     // spark
     "org.apache.spark" %% "spark-core" % "2.0.0",

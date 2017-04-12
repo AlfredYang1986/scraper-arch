@@ -7,3 +7,4 @@ target/
 *.swp
 src/main/resources/data/
 output/
+upload/

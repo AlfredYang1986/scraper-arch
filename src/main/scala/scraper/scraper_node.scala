@@ -29,7 +29,7 @@ class scraper_node(val s : sketch,
 				val sbs = s.subs.map (k => documentParseSubs(k._1, d))
 							.filterNot(_ == None).map(x => x.get._1 -> x.get._2).toMap
 
-				val lst = s.lst_attrs.map (l => dobumentParseLstElem(l._1, d))
+				val lst = s.lst_attrs.map (l => documentParseLstElem(l._1, d))
 							.filterNot(_ == None).map (x => x.get._1 -> x.get._2).toMap
 
 				println(s"scraper doing with url $x ...")
@@ -66,7 +66,7 @@ class scraper_node(val s : sketch,
 		Some(result)
 	}
 
-	def dobumentParseLstElem(lst_name : String, d : Document) : Option[(String, JsValue)] = {
+	def documentParseLstElem(lst_name : String, d : Document) : Option[(String, JsValue)] = {
 		val sk = s.lst_attrs.get(lst_name).get
 
 		val lst_entry = (sk \ "entrance").asOpt[String].map (x => x).getOrElse(throw new Exception("should be a string"))

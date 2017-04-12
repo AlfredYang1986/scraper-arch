@@ -37,7 +37,7 @@ case class dianping_data_parse(xml_file_name : String, xml_file_name_ch : String
 				(x \ "name").asOpt[String].map (y => y == last_shop_name.get).getOrElse(false)
 			} match {
 				case None => Unit
-				case Some(shop) => dianping_shops.pushShop(shop)
+				case Some(shop) => dianping_shops.pushShop(shop, dianping_shops.downloadShopImg(shop))
 			}
 		}
 	}
@@ -51,7 +51,7 @@ case class dianping_data_parse(xml_file_name : String, xml_file_name_ch : String
 				(x \ "name").asOpt[String].map (y => y == target.getCourse).getOrElse(false)
 			} match {
 				case None => handleSales(target)
-				case Some(c) => dainping_service.pushServices(c)
+				case Some(c) => dainping_service.pushServices(c, dainping_service.downloadServiceImages(c))
 			}
 		}
 	}

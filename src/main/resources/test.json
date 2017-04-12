@@ -1,30 +1,57 @@
 [
     {
-        "host": "http://bj.juesheng.com",
-        "platform": "决胜网",
-        "category": "音乐",
+        "host": "http://www.dianping.com",
+        "platform": "大众点评",
+        "category": "幼儿教育",
         "protocol": "html",
-        "url": "http://bj.juesheng.com/shop/588039.html",
+        "url": "http://www.dianping.com/shop/66526819/wedding/product/1371991",
         "page": "",
-        "upper": "9",
+        "upper": "0",
         "container": {
-            "entrance": "",
-            "url": "",
-            "defines": ["name", "address", "comment_numb", "phone", "schedule"],
-            "sub_entrance": ["sales"],
-            "name": "div.intr-l > div.head-line > h1",
-            "address": "div.intr-l > div.business-infor > p:nth-child(1) > span",
-            "comment_numb": "div.score-count > span > a",
-            "phone": "div.intr-l > div.business-infor > p:nth-child(2) > span",
-            "schedule": "div.intr-l > div.business-infor > p:nth-child(4) > span",
-            "sales": {
-                "entrance": "",
-                "url": "",
-                "parent": "",
-                "container": {
-                    "defines": ["name"],
-                    "url": "",
-                    "name": "div.bd > h1.title"
+            "entrance": {},
+            "defines": [
+                "name",
+                "phone",
+                "address",
+                "shop_name",
+                "course_type",
+                "age_boundary",
+                "course_schedule",
+                "trial",
+                "course_times",
+                "course_length",
+                "area",
+                "price",
+                "discount",
+                "course_description",
+                "course_teacher"
+            ],
+            "lst_entrance": [
+                "images"
+            ],
+            "name": "div.textshow > h3",
+            "phone": "div.hotline",
+            "address": "div.rst > span.address",
+            "shop_name": "div.type-box:nth-child(1) > h3 > a",
+            "course_type": "div.parameter > table > tbody > tr:nth-child(1) > td:nth-child(1) > div.cont",
+            "age_boundary": "div.parameter > table > tbody > tr:nth-child(1) > td:nth-child(2) > div.cont",
+            "course_schedule": "div.parameter > table > tbody > tr:nth-child(2) > td:nth-child(1) > div.cont",
+            "trial": "div.parameter > table > tbody > tr:nth-child(2) > td:nth-child(2) > div.cont",
+            "course_times": "div.parameter > table > tbody > tr:nth-child(3) > td:nth-child(1) > div.cont",
+            "course_length": "div.parameter > table > tbody > tr:nth-child(3) > td:nth-child(2) > div.cont",
+            "area": "div.parameter > table > tbody > tr:nth-child(4) > td:nth-child(1) > div.cont",
+            "price": "div.textshow > div > span.price-rel > span.originalPrice > em",
+            "discount": "div.textshow > div > span.price-rel > span.priceDisplay",
+            "course_teather": "div.parameter > table > tbody > tr:nth-child(6) > td:nth-child(1) > div.cont",
+            "course_description": "div.parameter > table > tbody > tr:nth-child(5) > td:nth-child(1) > div.cont",
+            "images": {
+                "entrance": "div.graph-box > ul",
+                "defines": [
+                    "image"
+                ],
+                "image": {
+                    "elem": "li > img",
+                    "attr": "data-lazyload"
                 }
             }
         }

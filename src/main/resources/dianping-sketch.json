@@ -82,7 +82,7 @@
                             "price": "div.textshow > div > span.price-rel > span.originalPrice > em",
                             "discount": "div.textshow > div > span.price-rel > span.priceDisplay",
                             "course_teather":"div.parameter > table > tbody > tr:nth-child(6) > td:nth-child(1) > div.cont",
-                            "course_description":"div.parameter > table > tbody > tr:nth-chivld(5) > td:nth-child(1) > div.cont",
+                            "course_description":"div.parameter > table > tbody > tr:nth-child(5) > td:nth-child(1) > div.cont",
                             "images": {
                                 "entrance": "div.graph-box > ul",
                                 "defines": ["image"],
@@ -194,7 +194,7 @@
                             "price": "div.textshow > div > span.price-rel > span.originalPrice > em",
                             "discount": "div.textshow > div > span.price-rel > span.priceDisplay",
                             "course_teather":"div.parameter > table > tbody > tr:nth-child(6) > td:nth-child(1) > div.cont",
-                            "course_description":"div.parameter > table > tbody > tr:nth-chivld(5) > td:nth-child(1) > div.cont",
+                            "course_description":"div.parameter > table > tbody > tr:nth-child(5) > td:nth-child(1) > div.cont",
                             "images": {
                                 "entrance": "div.graph-box > ul",
                                 "defines": ["image"],
@@ -306,7 +306,7 @@
                             "price": "div.textshow > div > span.price-rel > span.originalPrice > em",
                             "discount": "div.textshow > div > span.price-rel > span.priceDisplay",
                             "course_teather":"div.parameter > table > tbody > tr:nth-child(6) > td:nth-child(1) > div.cont",
-                            "course_description":"div.parameter > table > tbody > tr:nth-chivld(5) > td:nth-child(1) > div.cont",
+                            "course_description":"div.parameter > table > tbody > tr:nth-child(5) > td:nth-child(1) > div.cont",
                             "images": {
                                 "entrance": "div.graph-box > ul",
                                 "defines": ["image"],
