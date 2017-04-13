@@ -50,7 +50,7 @@ object dainping_service {
 				"images" -> toJson(imgs),
 				"description" -> toJson((s \ "course_description").asOpt[String].map (x => x + "\n").getOrElse("")
 										+ (s \ "course_teacher").asOpt[String].map (x => x).getOrElse("")),
-				"price" -> toJson((s \ "price").asOpt[Double].map (x => x).getOrElse(0.0)),
+				"price" -> toJson((s \ "price").asOpt[Int].map (x => x.toDouble).getOrElse(0.0)),
 				"status" -> toJson(2), "rate" -> toJson(0), "cans_cat" -> toJson(2),
 				"cans" -> toJson(-1), "facility" -> toJson(30), "distinct" -> toJson("北京市"),
 				"address" -> toJson(address), "least_hours" -> toJson(1), "allow_leave" -> toJson(0), "service_cat" -> toJson(0),
@@ -202,5 +202,117 @@ object dainping_service {
 			val service_id = head.getAs[String]("service_id").get
 			update2DB(toJson(Map("service_id" -> toJson(service_id), "status" -> toJson(2))), head)
 		}
+	}
+
+	def adjustAddressData = {
+		val mongoColl = _data_connection._conn("baby")("kidnap")
+		val ct = mongoColl.find(DBObject())
+
+		def filterAddress(a : String) : String = if (a.contains("地址")) {
+													a.substring("地址:".length).trim
+									 			 } else a
+
+		while (ct.hasNext) {
+			val service = ct.next().asDBObject
+			val service_id = service.getAs[String]("service_id").get
+			val address = service.getAs[String]("address").get
+			update2DB(toJson(Map("service_id" -> toJson(service_id),
+				"address" -> toJson(filterAddress(address)))), service)
+		}
+	}
+
+	def adjustPriceData = {
+		val mongoColl = _data_connection._conn("baby")("kidnap")
+		val ct = mongoColl.find(DBObject())
+
+		while (ct.hasNext) {
+			val service = ct.next().asDBObject
+			val service_id = service.getAs[String]("service_id").get
+			val service_name = service.getAs[String]("title").get
+			val price = service.getAs[Number]("price").get.doubleValue()
+
+			if (price == 0.0) {
+				exchange_data.courses.find(x => (x \ "name").asOpt[String].map (x => x).getOrElse("") == service_name) match {
+					case None => Unit
+					case Some(x) => {
+						val p = (x \ "price").asOpt[String].map (x => x.toDouble).getOrElse(0.0)
+						update2DB(toJson(Map("service_id" -> toJson(service_id), "price" -> toJson(p))), service)
+					}
+				}
+			}
+
+		}
+	}
+
+	def adjustData = {
+		val mongoColl = _data_connection._conn("baby")("kidnap")
+		val ct = mongoColl.find(DBObject())
+
+		while (ct.hasNext) {
+			val service = ct.next().asDBObject
+			val service_id = service.getAs[String]("service_id").get
+			val owner_id = service.getAs[String]("owner_id").get
+
+			val owner = (from db() in "user_profile" where ("user_id" -> owner_id) select (x => x)).toList.head
+			val company = owner.getAs[String]("screen_name").get
+			val personal_description = owner.getAs[String]("personal_description").map (x => x).getOrElse()
+
+			val service_title = service.getAs[String]("title").get
+			val service_description = service.getAs[String]("description").get
+
+			val cat = keywordsMapping(company + personal_description + service_title + service_description)
+
+			update2DB(toJson(Map("service_id" -> toJson(service_id),
+								 "service_cat" -> toJson(cat._1),
+								 "cans_cat" -> toJson(cat._2),
+								 "cans" -> toJson(cat._3))), service)
+		}
+	}
+
+	/**
+	  * 	service_cat: 一级 （课程=0，看顾=1）
+	  *     cans_cat： 二级 当 service_cat == 1 => 日间=0 课后=1   #define kAY_service_options_title_lookafter        @[@"日间看顾", @"课后看顾"]
+	  *				 service_cat == 0 =>
+	  *				    #define kAY_service_options_title_course        @[@"艺术", @"运动", @"科学", @"语言", @"阅读", @"手工"]
+	  *
+	  *		cans
+	  *					#define kAY_service_course_title_0              @[@"钢琴", @"舞蹈", @"书法", @"中国画", @"绘画", @"尤克丽丽", @"戏剧"]
+	  *					#define kAY_service_course_title_1              @[@"瑜伽健身", @"篮球", @"马术", @"围棋", @"击剑", @"桌游"]
+	  *					#define kAY_service_course_title_2              @[@"3D打印", @"机器人", @"心理学", @"行为习惯"]
+	  *					#define kAY_service_course_title_3              @[@"英语"]
+	  *					#define kAY_service_course_title_4              @[@"绘本"]
+	  *					#define kAY_service_course_title_5              @[@"烘焙", @"陶艺"]
+	  */
+	def keywordsMapping(k : String) : (Int, Int, Int) = {
+
+		def contains(lst : List[String]) : Boolean = (lst.map (x => k.contains(x)).count(_ => true)) > 0
+
+		val pinano_lst = "钢琴" :: Nil
+		val dance_lst = "舞" :: "芭蕾" :: Nil
+		val draw_lst = "绘画" :: "水彩" :: "国画" :: "插画" :: "版画" :: "写生" :: "美术" :: Nil
+		val youga_lst = "瑜伽" :: Nil
+		val basketball_lst = "篮球" :: Nil
+		val hourse_lst = "马术" :: "骑马" :: Nil
+		val weiqi_lst = "围棋" :: Nil
+		val fighter_lst = "击剑" :: Nil
+		val reboat_lst = "机器人" :: "robot" :: "stem" :: "STEM" :: "steam" :: "STEAM" :: Nil
+		val threedemention_lst = "3D打印" :: Nil
+
+		val sport_lst = "橄榄球" :: "足球" :: "乒乓球" :: "羽毛球" :: "运动" :: "跑酷" :: Nil
+		val art_lst = "音乐" :: "艺术" :: Nil
+		val scient_lst = "科学" :: "自然" :: Nil
+
+		if (contains(dance_lst)) (0, 0, 1)
+		else if (contains(draw_lst)) (0, 0, 4)
+		else if (contains(pinano_lst)) (0, 0, 0)
+		else if (contains(youga_lst)) (0, 1, 0)
+		else if (contains(basketball_lst)) (0, 1, 1)
+		else if (contains(hourse_lst)) (0, 1, 2)
+		else if (contains(threedemention_lst)) (0, 2, 0)
+		else if (contains(reboat_lst)) (0, 2, 1)
+		else if (contains(sport_lst)) (0, 1, 999)
+		else if (contains(art_lst)) (0, 0, 999)
+		else if (contains(scient_lst)) (0, 2, 999)
+		else (0, 999, 999)
 	}
 }

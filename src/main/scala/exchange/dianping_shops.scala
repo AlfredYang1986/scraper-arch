@@ -13,6 +13,8 @@ import http.{Download, HTTP}
 import java.io.File
 import java.io.FileWriter
 
+import exchange.dainping_service.{keywordsMapping, update2DB}
+
 /**
   * Created by Alfred on 10/04/2017.
   */
@@ -40,7 +42,8 @@ object dianping_shops {
 			toJson(Map("user_id" -> toJson(Sercurity.md5Hash(shop_name + Sercurity.getSercuritySeed)), "screen_name" -> toJson(shop_name),
 				"screen_photo" -> toJson(img), "isLogin" -> toJson(1), "gender" -> toJson(1), "school" -> toJson(""),
 				"company" -> toJson((shop \ "name").asOpt[String].map(x => x).getOrElse("")),
-				"occupation" -> toJson(""), "personal_description" -> toJson(""), "is_service_provider" -> toJson(1),
+				"occupation" -> toJson(""), "is_service_provider" -> toJson(1),
+				"personal_description" -> toJson((shop \ "introduction").asOpt[String].map(x => x).getOrElse("")),
 				"address" -> toJson((shop \ "address").asOpt[String].map(x => x).getOrElse("")),
 				"date" -> toJson(new Date().getTime), "dob" -> toJson(0), "about" -> toJson(""),
 				"contact_no" -> toJson((shop \ "phone").asOpt[String].map(x => x).getOrElse(""))))
@@ -157,6 +160,31 @@ object dianping_shops {
 				_data_connection.getCollection("user_profile").update(DBObject("user_id" -> user_id), user)
 			}
 			case _ => ???
+		}
+	}
+
+	def adjustDescriptionData = {
+		val mongoColl = _data_connection._conn("baby")("user_profile")
+		val ct = mongoColl.find(DBObject())
+
+		while (ct.hasNext) {
+			val profile = ct.next().asDBObject
+
+			val user_id = profile.getAs[String]("user_id").get
+			val shop_name = profile.getAs[String]("screen_name").get
+
+			if (profile.getAs[String]("personal_description").map (x => x).getOrElse("").isEmpty) {
+				exchange_data.shops.find(x => (x \ "name").asOpt[String].map (x => x).getOrElse("") == shop_name) match {
+					case None => Unit
+					case Some(x) => {
+						if (!(x \ "introduction").asOpt[String].map (x => x).getOrElse("").isEmpty) {
+							profile += "personal_description" -> x
+							_data_connection.getCollection("user_profile").update(DBObject("user_id" -> user_id), profile)
+						}
+					}
+				}
+			}
+
 		}
 	}
 }

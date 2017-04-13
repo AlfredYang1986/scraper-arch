@@ -17,6 +17,7 @@ object scarper_main extends App {
 					case "merge" => (0, None)
 					case "exchange" => (2, filePath(tail))
 					case "online" => (3, None)
+					case "modify" => (4, None)
 					case _ => (-1, None)
 				}
 		}
@@ -26,19 +27,23 @@ object scarper_main extends App {
 			case head :: _ => Some(head)
 		}
 
+	def printUsage = {
+		println(
+			"""
+			  | you have to input option args
+			  |     scraper: crawl the web
+			  |     merge: merge existing data in data directory
+			""".stripMargin)
+		System.exit(-1)
+	}
+
 	override def main(args: Array[String]): Unit = {
 		val path = "src/main/resources/"
 		val sys = ActorSystem("scraper")
 		val s = sys.actorOf(scraper_dispatch.props)
 		val (act, f_opt) = actions(args.toList)
 		if (act < 0) {
-			println(
-				"""
-				  | you have to input option args
-				  |     scraper: crawl the web
-				  |     merge: merge existing data in data directory
-				""".stripMargin)
-			System.exit(-1)
+			printUsage
 		} else if (act == 0) {
 			println("only merge result")
 			s ! merge_result()
@@ -71,6 +76,14 @@ object scarper_main extends App {
 		} else if (act == 3) {
 			dainping_service.onlineAllService
 			println(s"dianping online service end")
+		} else if (act == 4) {
+//			dianping_shops.adjustDescriptionData
+//			dainping_service.adjustAddressData
+//			dainping_service.adjustData
+			dainping_service.adjustPriceData
+			println(s"dianping adjust user & service end")
+		} else {
+			printUsage
 		}
 	}
 }

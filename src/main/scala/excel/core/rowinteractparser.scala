@@ -25,9 +25,9 @@ case class dianping_data_parse(xml_file_name : String, xml_file_name_ch : String
 	var last_shop_name : Option[String] = None
 
 	// get result json file
-	val shops =  Json.parse(new FileInputStream("""output/dianping-origin.json""")).asOpt[List[JsValue]].map (x => x).getOrElse(Nil)
-	val courses =  Json.parse(new FileInputStream("""output/dianping-class.json""")).asOpt[List[JsValue]].map (x => x).getOrElse(Nil)
-	val sales =  Json.parse(new FileInputStream("""output/dianping-sales.json""")).asOpt[List[JsValue]].map (x => x).getOrElse(Nil)
+	val shops = exchange.exchange_data.shops
+	val courses = exchange.exchange_data.courses
+	val sales = exchange.exchange_data.sales
 
 	def handleShop(target : target_type) = {
 		if (!(target.getShop == null || target.getShop.isEmpty)) {
