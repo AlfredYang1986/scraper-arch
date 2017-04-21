@@ -177,8 +177,9 @@ object dianping_shops {
 				exchange_data.shops.find(x => (x \ "name").asOpt[String].map (x => x).getOrElse("") == shop_name) match {
 					case None => Unit
 					case Some(x) => {
-						if (!(x \ "introduction").asOpt[String].map (x => x).getOrElse("").isEmpty) {
-							profile += "personal_description" -> x
+						val introduction = (x \ "introduction").asOpt[String].map (x => x).getOrElse("")
+						if (!introduction.isEmpty) {
+							profile += "personal_description" -> introduction
 							_data_connection.getCollection("user_profile").update(DBObject("user_id" -> user_id), profile)
 						}
 					}

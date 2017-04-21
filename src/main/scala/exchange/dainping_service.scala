@@ -8,6 +8,7 @@ import sercurity.Sercurity
 import com.mongodb.casbah.Imports._
 import http.Download
 import util.dao.{_data_connection, from}
+import java.util.Calendar
 
 /**
   * Created by Alfred on 11/04/2017.
@@ -314,5 +315,164 @@ object dainping_service {
 		else if (contains(art_lst)) (0, 0, 999)
 		else if (contains(scient_lst)) (0, 2, 999)
 		else (0, 999, 999)
+	}
+
+	def adjustTimeManagement = {
+		val mongoColl = _data_connection._conn("baby")("kidnap")
+		val ct = mongoColl.find(DBObject())
+
+		while (ct.hasNext) {
+			val service = ct.next().asDBObject
+			val service_id = service.getAs[String]("service_id").get
+			val owner_id = service.getAs[String]("owner_id").get
+
+			val owner = (from db() in "user_profile" where ("user_id" -> owner_id) select (x => x)).toList.head
+			val company = owner.getAs[String]("screen_name").get
+
+			val schedule = exchange_data.shops.find(x => (x \ "name").asOpt[String].map (x => x).getOrElse("") == company) match {
+				case None => ""
+				case Some(s) => (s \ "schedule").asOpt[String].map (x => x).getOrElse("")
+			}
+
+			if (!schedule.isEmpty) {
+				val schedule_item_lst = splitSchedule(schedule)
+				val date = service.getAs[Number]("date").get.longValue
+				println(schedule_item_lst.length)
+
+				schedule_item_lst.foreach(x => pushSchedule2DB(handleScheduleItem(x)(date), service_id))
+			}
+		}
+	}
+
+	def splitSchedule(schedule : String) : List[String] = schedule.split(";").map (x => x.split("、")).flatten.toList
+
+	def pushSchedule2DB(tms : List[JsValue], service_id : String) = {
+		updateServiceTM(toJson(Map("tms" -> toJson(tms), "service_id" -> toJson(service_id))))
+	}
+
+	def handleScheduleItem(item : String)(date : Long) : List[JsValue] = {
+		val iter = item.replace("：", ":").replace("至", "~").replace("-", "~").trim
+		val index = if (iter.head.isDigit) iter.lastIndexWhere(x => x.isDigit) + 1
+					else iter.indexWhere(x => x.isDigit)
+		var (days, hours) =  (iter.splitAt(index))
+
+		println(s"days : $days hours : $hours")
+
+		if (days.isEmpty) Nil
+		else {
+			if (days.trim.head.isDigit) {
+				val tmp = days.trim
+				days = hours.trim
+				hours = tmp
+			}
+
+			val (starthours, endhours) = praseHours(hours)
+			println(s"hours start: $starthours, end: $endhours")
+
+			praseDays(days, date) map { x =>
+				toJson(Map("pattern" -> toJson(1), "startdate" -> toJson(x._1), "enddate" -> toJson(x._2),
+					"starthours" -> toJson(starthours), "endhours" -> toJson(endhours)))
+			}
+		}
+	}
+
+	def praseHours(hours : String) : (Long, Long) = {
+		def string2time(s : String) : Long = s.replace(":", "").toLong
+		val lst = hours.split("~")
+		(string2time(lst.head), string2time(lst.tail.head))
+	}
+
+	def praseDays(days : String, date : Long) : List[(Long, Long)] = {
+		val map = Map("一" -> 1, "二" -> 2, "三" -> 3, "四" -> 4, "五" -> 5, "六" -> 6, "日" -> 0)
+		val keys = map.keys.toList.sortBy(map(_))
+
+		val public_cal = Calendar.getInstance
+		val public_d = new Date(date)
+
+		val public_week_day =
+		{
+			public_cal.setTime(public_d)
+			public_cal.get(Calendar.DAY_OF_WEEK) - 1
+		}
+
+		var contians : List[String] = keys.filter(p => days.contains(p)).sorted
+
+		if (days.isEmpty) {
+			contians = keys
+
+		} else if (days.contains("~")) {
+			val st = contians.head
+			val ed = contians.last
+
+			var select = false
+			contians = keys.map { x =>
+				if (select == false && x == st) select = true
+				else if (select == true && x == ed) select = false
+
+				if (select) x
+				else if (x == st || x == ed) x
+				else ""
+			}.filterNot(x => x == "").sorted
+
+			println(s"contains are : $contians")
+		} else Unit
+
+		val cal = Calendar.getInstance()
+		contians.map { x =>
+			cal.setTime(new Date(date))
+			cal.add(Calendar.DATE, public_week_day - map(x))
+			(cal.getTime.getTime, -1.toLong)
+		}
+	}
+
+	def Js2DBObject(data : JsValue, service_id : String) : MongoDBObject = {
+		val builder = MongoDBObject.newBuilder
+
+		builder += "service_id" -> service_id
+
+		val tm_builder = MongoDBList.newBuilder
+		(data \ "tms").asOpt[List[JsValue]].map { arr => arr foreach { one =>
+			val tmp = MongoDBObject.newBuilder
+			tmp += "pattern" -> (one \ "pattern").asOpt[Int].map (x => x).getOrElse(throw new Exception("wrong input"))
+			tmp += "startdate" -> (one \ "startdate").asOpt[Long].map (x => x).getOrElse(throw new Exception("wrong input"))
+			tmp += "enddate" -> (one \ "enddate").asOpt[Long].map (x => x).getOrElse(-1)
+			tmp += "starthours" -> (one \ "starthours").asOpt[Long].map (x => x).getOrElse(throw new Exception("wrong input"))
+			tmp += "endhours" -> (one \ "endhours").asOpt[Long].map (x => x).getOrElse(throw new Exception("wrong input"))
+
+			tm_builder += tmp.result
+
+		}}.getOrElse("wrong input")
+		builder += "tms" -> tm_builder.result
+
+		builder.result
+	}
+
+	def pushServiceTM(data : JsValue) = {
+		try {
+			val service_id = (data \ "service_id").asOpt[String].get
+
+			val obj = Js2DBObject(data, service_id)
+			_data_connection.getCollection("service_time") += obj
+
+		} catch {
+			case ex : Exception => ex.printStackTrace()
+		}
+	}
+
+	def updateServiceTM(data : JsValue) = {
+		try {
+			val service_id = (data \ "service_id").asOpt[String].get
+
+			(from db() in "service_time" where ("service_id" -> service_id) select (x => x)).toList match {
+				case head :: Nil => {
+					val obj = Js2DBObject(data, service_id)
+					_data_connection.getCollection("service_time").update(head, obj)
+				}
+				case _ => pushServiceTM(data)
+			}
+
+		} catch {
+			case ex : Exception => ex.printStackTrace()
+		}
 	}
 }

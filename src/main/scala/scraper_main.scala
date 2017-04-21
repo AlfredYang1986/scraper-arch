@@ -18,6 +18,7 @@ object scarper_main extends App {
 					case "exchange" => (2, filePath(tail))
 					case "online" => (3, None)
 					case "modify" => (4, None)
+					case "schedule" => (5, None)
 					case _ => (-1, None)
 				}
 		}
@@ -77,11 +78,13 @@ object scarper_main extends App {
 			dainping_service.onlineAllService
 			println(s"dianping online service end")
 		} else if (act == 4) {
-//			dianping_shops.adjustDescriptionData
+			dianping_shops.adjustDescriptionData
 //			dainping_service.adjustAddressData
 //			dainping_service.adjustData
-			dainping_service.adjustPriceData
+//			dainping_service.adjustPriceData
 			println(s"dianping adjust user & service end")
+		} else if (act == 5) {
+			dainping_service.adjustTimeManagement
 		} else {
 			printUsage
 		}
